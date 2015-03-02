@@ -28,7 +28,6 @@ if ('development' == app.get('env')) {
 }
 
 routes(app);
-//app作为处理每一个请求的函数
 var server=http.createServer(app);
 var io=require('socket.io')(server);
 server.listen(app.get('port'), function(){
