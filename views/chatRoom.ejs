@@ -6,46 +6,29 @@
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="/bower_components/socket.io-client/socket.io.js"></script>
     <script>
-        var app=angular.module('app',[]);
-        app.factory('socket',function(){
-            var socket = io.connect('10.10.17.56:3000');
-            return socket;
-        })
-        app.controller('roomCtrl',function($scope,socket){
-            socket.on('messageAdded',function(msgs){
-                $scope.$apply(
-                        function(){
-                            $scope.messages=msgs;
-                        }
-                )
-            });
-            socket.on('allMessages',function(msgs){
-                $scope.$apply(
-                        function(){
-                            $scope.messages=msgs;
-                        }
-                )
-            })
-            $scope.send=function(){
-                if($scope.msg){
-                    socket.emit('newMessage',$scope.msg);
-                    $scope.msg=null;
-                }
-            }
-        })
+        var app=angular.module('app',['ui.router']);
+    </script>
+    <script src="js/service.js"></script>
+    <script src="js/uiRoutes.js"></script>
+    <script src="js/messageController.js"></script>
+    <script>
+
     </script>
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header"><a class="navbar-brand" href="#">Chat Room</a></div>
-    </div>
-</div>
+
+
 <div class="container">
-    <div class="col-md-12">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header"><a class="navbar-brand" href="#">Chat Room</a></div>
+        </div>
+    </div>
+    <div ui-view class="col-md-12">
         <div class="panel panel-default room">
             <div class="panel-heading room-header">Chat Room</div>
             <div ng-controller="roomCtrl" class="panel-body room-content">
