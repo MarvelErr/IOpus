@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header"><a class="navbar-brand" href="#">Chat Room</a></div>
+        </div>
+    </div>
+    <div ui-view class="col-md-12">
+        <div class="panel panel-default room">
+            <div class="panel-heading room-header">Chat Room</div>
+            <div ng-controller="roomCtrl" class="panel-body room-content">
+                <div class="messages">
+                    <div class="list-group">
+                        <div ng-repeat="msg in messages">
+                            {{msg}}
+                        </div>
+                    </div>
+                </div>
+                <form class="message-creator">
+                    <div class="form-group">
+                        <textarea ng-model='msg' class="form-control" name="" id=""
+                                  placeholder="">
+                        </textarea>
+                        <button class="btn btn-primary" ng-click="send()">发送</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
