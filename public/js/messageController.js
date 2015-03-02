@@ -1,0 +1,27 @@
+/**
+ * Created by luwenxull on 2015/3/2.
+ */
+app.controller('roomCtrl',function($scope,socket,$state){
+    $scope.messages=[];
+    socket.on('messageAdded',function(msgs){
+        $scope.$apply(
+            function(){
+                $scope.messages=msgs;
+            }
+        )
+    });
+    socket.on('allMessages',function(msgs){
+        $scope.$apply(
+            function(){
+                $scope.messages=msgs;
+            }
+        )
+    });
+    $scope.send=function(){
+        $state.go('login');
+        if($scope.msg){
+            socket.emit('newMessage',$scope.msg);
+            $scope.msg=null;
+        }
+    }
+})
