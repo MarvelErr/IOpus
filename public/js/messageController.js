@@ -3,6 +3,12 @@
  */
 app.controller('roomCtrl',function($scope,socket,$state){
     $scope.messages=[];
+    /*if(!window.localStorage.IOpusUser){
+        $state.go('login')
+    }else{
+        $state.go('startChat')
+    }*/
+    $state.go('login');
     socket.on('messageAdded',function(msgs){
         $scope.$apply(
             function(){
@@ -18,7 +24,6 @@ app.controller('roomCtrl',function($scope,socket,$state){
         )
     });
     $scope.send=function(){
-        $state.go('login');
         if($scope.msg){
             socket.emit('newMessage',$scope.msg);
             $scope.msg=null;
