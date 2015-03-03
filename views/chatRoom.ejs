@@ -12,14 +12,14 @@
         var app=angular.module('app',['ui.router']);
     </script>
     <script src="js/service.js"></script>
-    <script src="js/uiRoutes.js"></script>
-    <script src="js/messageController.js"></script>
+    <script src="js/chatRoutes.js"></script>
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
 </head>
 <body>
 <div class="container">
-    <div class="row" ng-controller="roomCtrl">
-        <div class="col-md-12" ui-view></div>
+    <div class="row" ui-view>
+        <a ui-sref="login">登录</a>
+        <a ui-sref="chat">开始聊天</a>
     </div>
 </div>
 </body>
