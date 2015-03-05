@@ -9,5 +9,8 @@ module.exports=function(app){
   });
   app.get('/chatRoom',function(req,res){
     res.render('chatRoom')
+  });
+  app.get('/myResume',function(req,res){
+    res.render('resume')
   })
 };
