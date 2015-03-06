@@ -1,6 +1,3 @@
-<div class="col-md-10">
-    <input type="text" placeholder="please enter you nickname" ng-model="nickname"/>
-</div>
-<div class="col-md-2">
-    <button class="btn btn-primary" ng-click="confirm()">确认</button>
+<div class="col-md-12" ng-keydown="confirm($event)">
+    <input type="text" placeholder="输入您的昵称，按Enter键确认" ng-model="nickname"/>
 </div>

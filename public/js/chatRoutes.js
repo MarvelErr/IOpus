@@ -6,10 +6,12 @@ app.config(function($stateProvider){
         templateUrl:'/chatRoom/login.html',
         url:'/login',
         controller:function($scope,$state){
-            $scope.confirm=function(){
-                window.localStorage.IOpusUser=($scope.nickname!=null&&$scope.nickname!='')?$scope.nickname:null;
-                $state.go('chat');
-            }
+            $scope.confirm=function($event){
+                if($event.keyCode==13){
+                    window.localStorage.IOpusUser=($scope.nickname!=null&&$scope.nickname!='')?$scope.nickname:null;
+                    $state.go('chat');
+                }
+            };
         }
     }).state('chat',{
         templateUrl:'/chatRoom/chat.html',
