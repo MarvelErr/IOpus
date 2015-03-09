@@ -40,11 +40,9 @@ io.on('connection', function (socket) {
   sockets.push(socket);
   socket.emit('allMessages',messages);
   socket.on('newMessage',function(message){
-    console.log(message);
     messages.push(message);
     for(var i=0;i<sockets.length;i++){
       sockets[i].emit('messageAdded',messages);
     }
-
   })
 });

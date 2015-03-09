@@ -37,7 +37,10 @@ app.config(function($stateProvider){
                 });
                 $scope.send=function(){
                     if($scope.msg){
-                        socket.emit('newMessage',window.localStorage.IOpusUser+':'+$scope.msg);
+                        socket.emit('newMessage',{
+                            name:window.localStorage.IOpusUser,
+                            msg:$scope.msg
+                        });
                         $scope.msg=null;
                     }
                 }
