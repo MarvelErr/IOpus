@@ -12,5 +12,8 @@ module.exports=function(app){
   });
   app.get('/myResume',function(req,res){
     res.render('resume')
+  });
+  app.get('/blog',function(req,res){
+    res.render('blog/blog')
   })
 };
