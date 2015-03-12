@@ -23,8 +23,18 @@
 <body>
 <div class="container">
     <div class="row" ui-view>
-        <a ui-sref="login">登录</a>
-        <a ui-sref="chat">开始聊天</a>
+        <div class="clo-md-12">
+            <nav>
+                <a ui-sref="login">登录</a>
+                <a ui-sref="register">注册</a>
+                <a ui-sref="chat">开始聊天</a>
+            </nav>
+            <div class="loginContainer">
+                <span>用户名：</span><input type="text"/>
+                <span>密码：</span><input type="text"/>
+            </div>
+        </div>
+
     </div>
 </div>
 </body>
