@@ -1,6 +1,7 @@
 @leftPadding:2em;
-@top-margin:24px;
+@controlMargin:24px;
 @fontAColor:#028FF8;
+@rightSpace:15px;
 .inlineBlock{
   display: inline-block;
 }
@@ -12,10 +13,36 @@
   border-bottom: 1px solid #dcdcdc;
 }
 
+.adjustHeight{
+  height: 35px !important;
+}
+
 .topMargin{
-  margin-top: @top-margin;
+  margin-top: -20px;
+}
+.right-space{
+  margin-right: @rightSpace;
 }
 
 .fontAColor{
   color: @fontAColor;
+}
+
+.spin{
+  transition: 1s;
+  &:hover{
+    -ms-transform: rotate(360deg);		/* IE 9 */
+    -webkit-transform: rotate(360deg);	/* Safari and Chrome */
+    -o-transform: rotate(360deg);		/* Opera */
+    -moz-transform: rotate(360deg);
+  }
+}
+
+.skillItem{
+  line-height: 35px;
+  font-size: 28px;
+};
+
+.textToRight{
+  text-align: right;
 }
