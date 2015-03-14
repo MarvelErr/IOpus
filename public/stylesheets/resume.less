@@ -5,6 +5,9 @@
 .inlineBlock{
   display: inline-block;
 }
+.h1-color{
+  color: #3366CC !important;
+}
 .withPadding{
   padding-left: @leftPadding;
 }
@@ -14,20 +17,24 @@
 }
 
 .adjustHeight{
-  height: 35px !important;
+  height: 30px !important;
 }
 
-.topMargin{
-  margin-top: -20px;
+.topMargin(@length){
+  margin-top: @length;
+}
+.less-top{
+  .topMargin(-30px);
 }
 .right-space{
   margin-right: @rightSpace;
 }
-
 .fontAColor{
   color: @fontAColor;
 }
-
+.second-stage{
+  background-color: #99CCFF;
+}
 .spin{
   transition: 1s;
   &:hover{
@@ -39,10 +46,24 @@
 }
 
 .skillItem{
-  line-height: 35px;
-  font-size: 28px;
+  line-height: 30px;
+  font-size: 22px;
 };
-
-.textToRight{
-  text-align: right;
+.skill-hide-position{
+  margin-top: -19px;
+//  padding-top: 3px;
 }
+/*.skill-hide-borderTop{
+  border-top: 0px;
+}*/
+.skill-hide{
+  .skill-hide-position;
+  background-color: #337AB7;
+//  border: 1px solid #337AB7;
+//  .skill-hide-borderTop;
+  border-radius: 4px;
+  display: none;
+  transition: 1s;
+}
+
+
