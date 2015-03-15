@@ -2,6 +2,10 @@
 @controlMargin:24px;
 @fontAColor:#028FF8;
 @rightSpace:15px;
+/*相对定位*/
+.rel-pos{
+  position: relative;
+}
 .inlineBlock{
   display: inline-block;
 }
@@ -56,14 +60,72 @@
 /*.skill-hide-borderTop{
   border-top: 0px;
 }*/
+.s-h-color(@color){
+  background-color: @color;
+}
+.color-one{
+  .s-h-color(#337ab7);
+}
+.color-two{
+  .s-h-color(#5bc0de);
+}
+.color-three{
+  .s-h-color(#d9534f);
+}
 .skill-hide{
   .skill-hide-position;
-  background-color: #337AB7;
 //  border: 1px solid #337AB7;
 //  .skill-hide-borderTop;
   border-radius: 4px;
   display: none;
   transition: 1s;
+}
+.a-control{
+  font-size: 30px !important;
+  float: right;
+  cursor: pointer;
+}
+.res{
+  visibility: hidden;
+}
+
+/*third stage*/
+.t-l-position{
+  .rel-pos;
+  top: 150px;
+}
+.t-l-border{
+  border-top: 1px solid red;
+}
+.time-line{
+  width: 100%;
+  .t-l-border;
+  .t-l-position;
+}
+.c-size(@cSize:10px){
+  width: @cSize;
+  height: @cSize;
+}
+.c-pos{
+  &:extend(.rel-pos);
+  top: -10px;
+}
+.circle{
+  .c-size;
+  .c-pos;
+  background-color: red;
+  display: inline-block;
+  border-radius: 50%;
+  border: 1px solid green;
+}
+.c-one{
+  left: 1%;
+}
+.c-two{
+  left: 30%;
+}
+.c-three{
+  left: 70%;
 }
 
 
