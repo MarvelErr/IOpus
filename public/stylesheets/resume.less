@@ -128,4 +128,22 @@
   left: 70%;
 }
 
+/*呼吸灯*/
+.breath-border{
+  border-radius: 50px;
+//  box-shadow:5px 5px 5px blue,-5px -5px 5px blue;
+  box-shadow: 0 0 20px blue;
+}
+@-webkit-keyframes breathLight
+ {
+  from{box-shadow: 0 0 5px 4px blue}
+  to{box-shadow: 0 0 0 0 blue}
+}
+.breath{
+  width: 50px;
+  height: 50px;
+  .breath-border;
+  -webkit-animation: breathLight 3s ease-in-out 0 infinite alternate;
+}
+
 
