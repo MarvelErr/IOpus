@@ -20,8 +20,10 @@
         }
       $(function(){
           var flag=true;
-          $('.full').css('height',$(window).height());
-          $('.more-top').css('margin-top',$(window).height()*0.12);
+          var containerHeight=$(window).height()>650?$(window).height():650;
+          $('.full').css('height',containerHeight);
+          $('.more-top').css('margin-top',containerHeight*0.12);
+          /*canvas*/
           $('.tlt').textillate();
           $(function () {
               $('[data-toggle="tooltip"]').tooltip()
@@ -58,6 +60,11 @@
                 <p>一名小小攻城狮的前端之路</p>
                 <span class="fa fa-envelope-o fontAColor spin"></span><span class="right-space" >luwenxull@outlook.com</span>
                 <span class="fa fa-phone fontAColor spin"></span><span class="right-space">13646216010</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <canvas id="canvas1" width="1168" height="400"></canvas>
             </div>
         </div>
     </div>
@@ -139,6 +146,9 @@
             </div>
             <div class="col-md-11">
                 <div class="time-line">
+                    <div class="dialog">
+                        i am the dialog
+                    </div>
                     <span class="fa fa-circle"></span>
                     <div class="circle c-one">
                         <span class="fa fa-angle-right fa-2x"></span>
@@ -151,6 +161,6 @@
         </div>
     </div>
 </div>
-
+<script src="/js/resume/canvas.js"></script>
 </body>
 </html>
