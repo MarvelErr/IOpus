@@ -1,0 +1,96 @@
+/*top-section*/
+.full{
+//  width: 1366px;
+}
+.top-s-bgc{
+  background-image: url('../pic/eagle.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.top-s-size{
+  height: 550px;
+}
+.top-section{
+  .top-s-bgc;
+  .top-s-size;
+}
+/*top-section:font*/
+.font-size(@fontSize){
+  font-size: @fontSize;
+}
+.head{
+  color: #546980;
+  word-spacing: 5px;
+  .font-size(50px);
+}
+.subhead{
+  color: #83888B;
+  .font-size(30px);
+  font-family: -webkit-pictograph;
+  font-style: italic;
+}
+.my-btn-one{
+  border: 1px solid #31C0E4;
+  margin-top: 15px;
+}
+.font-btn{
+  .font-size(20px);
+  color: #2CABCB;
+}
+/*second-section*/
+.second-section{
+  background-color: #EBF0F3;
+}
+.head-two{
+  color: #546980;
+  word-spacing: 8px;
+}
+.sim-info{
+  color: #546980;
+  .font-size(16px)
+}
+.sim-info-sub{
+  &:extend(.sim-info);
+  font-size: 12px;
+  margin-bottom: 15px;
+}
+.sim-info-e{
+  &:extend(.sim-info);
+  font-family: Calibri;
+  font-style: italic;
+  white-space: pre-line;
+  margin-bottom: 35px;
+}
+.my-btn-two{
+  border: 1px solid #2CC3F8;
+  font-family: 微软雅黑;
+  color: #2CC3F8;
+}
+.goat{
+  position: relative;
+  top: -27px;
+}
+/**/
+
+/*fourth section*/
+.fourth-section-bg{
+  background-image: url('../pic/bg-last.gif');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.fourth-section{
+  .fourth-section-bg;
+  height: 400px;
+}
+.head-four{
+  color: #ffffff;
+}
+.subhead-four{
+  color: #ffffff;
+  font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+  font-style: italic;
+}
+.my-btn-four{
+  border: 1px solid #B2C3E3;
+  color: aliceblue;
+}

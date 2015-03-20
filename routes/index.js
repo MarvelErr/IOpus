@@ -15,5 +15,8 @@ module.exports=function(app){
   });
   app.get('/blog',function(req,res){
     res.render('blog/blog')
+  });
+  app.get('/resumeTwo',function(req,res){
+    res.render('resume/resume_two')
   })
 };
