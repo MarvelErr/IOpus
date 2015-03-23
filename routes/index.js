@@ -11,12 +11,9 @@ module.exports=function(app){
     res.render('chatRoom')
   });
   app.get('/myResume',function(req,res){
-    res.render('resume')
+    res.render('resume/resume')
   });
   app.get('/blog',function(req,res){
     res.render('blog/blog')
   });
-  app.get('/resumeTwo',function(req,res){
-    res.render('resume/resume_two')
-  })
 };

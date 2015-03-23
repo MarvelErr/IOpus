@@ -50,6 +50,49 @@
           })
       })
     </script>
+    <!---->
+    <script>
+        $(function(){
+            function setMargin(){
+
+            }
+            $('.skill-one').click(function(){
+                $('.skill-two').css('margin-left','75%');
+                $('.skill-three').css('margin-left','83.333%');
+                $('.skill-four').css('margin-left','91.666%');
+            })
+            $('.skill-two').click(function(){
+                $(this).css('margin-left','8.333%');
+                $('.skill-three').css('margin-left','83.333%');
+                $('.skill-four').css('margin-left','91.666%');
+            })
+            $('.skill-three').click(function(){
+                $('.skill-two').css('margin-left','8.333%');
+                $(this).css('margin-left','16.666%');
+                $('.skill-four').css('margin-left','91.666%');
+            })
+            $('.skill-four').click(function(){
+                $('.skill-two').css('margin-left','8.3333%');
+                $('.skill-three').css('margin-left','16.666%');
+                $(this).css('margin-left','24.999%');
+            })
+            /*$('.skill-two').click(function(){
+                $(this).css('margin-left','25%');
+                $('.skill-three').css('margin-left','70%');
+            })
+            $('.skill-three').click(function(){
+                $(this).css('margin-left','50%');
+//                $('.skill-two').css('margin-left','25%');
+                $('.skill-four').css('margin-left','95%');
+            })
+            $('.skill-four').click(function(){
+                $(this).css('margin-left','50%');
+                $('.skill-three').css('margin-left','70%');
+            })*/
+
+
+        })
+    </script>
 </head>
 <body>
 <div class="jumbotron full">
@@ -70,7 +113,7 @@
     </div>
 </div>
 <div class="full less-top second-stage">
-    <div class="container">
+    <!--<div class="container">
         <div class="row" style="margin-bottom: 15px">
             <div class="col-md-12 text-center" id="stage-title-two">
                 <h1 class="res">reserve</h1>
@@ -135,6 +178,32 @@
                 </div>
             </div>
         </div>
+    </div>-->
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 rel-pos" style="height: 400px;overflow-x: hidden;">
+                <div class="skill-one skill">
+                    <div class="row">
+                        <div class="col-xs-4"><h4>HTML+CSS</h4></div>
+                        <div class="col-xs-8">属性XXXX</div>
+                    </div>
+                </div>
+                <div class="skill-two skill">
+                    <div class="col-xs-4"><h4>JavaScript</h4></div>
+                    <div class="col-xs-8">熟悉YYYYY</div>
+                </div>
+                <div class="skill-three skill">
+                    <h4>Node.JS</h4>
+                </div>
+                <div class="skill-four skill">
+                    <h4>Java</h4>
+                </div>
+            </div>
+        </div>
+                <!--<div class="col-xs-3 skill skill-one"></div>
+                <div class="col-xs-3 skill skill-two"></div>
+                <div class="col-xs-3 skill skill-three"></div>
+                <div class="col-xs-3 skill skill-four"></div>-->
     </div>
 </div>
 <div class="full third-stage">

@@ -1,10 +1,37 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>My blog</title>
+    <title>IOpus</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/bower_components/font-awesome-4.3.0/css/font-awesome.css"/>
+    <link rel="stylesheet/less" href="/stylesheets/blog.less"/>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/bower_components/less/dist/less.min.js"></script>
+    <script>
+        $(function(){
+            $('.full').css('width',$(document).width())
+        })
+    </script>
 </head>
 <body>
-
+<div class="container full">
+    <div class="row">
+        <div class="col-xs-2 nav-left">
+            <div class="dropdown">
+                    <span class="sup-menu" data-toggle="dropdown">HTML+CSS</span><span class="fa fa-angle-right"></span>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-xs-10" style="height: 800px">a</div>
+    </div>
+</div>
 </body>
 </html>
