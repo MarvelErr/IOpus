@@ -41,7 +41,10 @@
   color: @fontAColor;
 }
 .second-stage{
-  background-color: #99CCFF;
+//  background-color: #99CCFF;
+  background-image: url('../pic/2.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 .spin{
   transition: 1s;
@@ -159,23 +162,25 @@
 }
 /*second stage*/
 .skill{
-  .size(75%,200px);
-  border: 1px solid red;
+  .size(75%,300px);
   position: absolute;
   transition-duration: 1s;
+  &:hover{
+//    margin-top: 10px;
+  }
 }
 .skill-one{
-//  background-color: red;
+  background-color: rgba(0,179,214,1);
 }
 .skill-two{
   margin-left: 25%;
-//  background-color: green;
+  background-color: rgba(253,224,154,1);
 }
 .skill-three{
   margin-left: 50%;
-//  background-color: blue;
+  background-color: rgba(255,244,205,1);
 }
 .skill-four{
   margin-left: 75%;
-//  background-color: #ffff00;
+  background-color: rgba(174,222,240,1);
 }

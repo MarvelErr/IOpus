@@ -53,44 +53,41 @@
     <!---->
     <script>
         $(function(){
-            function setMargin(){
-
+            function setOpacity(ele){
+                var skills=$('.skill');
+                skills.each(function(){
+                    if(this==ele){
+                        $(this).css({'opacity':'1','transform':'rotateY(0deg)'})
+                    }else{
+                        $(this).css({'opacity':'.5','transform':'rotateY(-3deg)'})
+                    }
+                })
             }
+
             $('.skill-one').click(function(){
+                setOpacity(this);
                 $('.skill-two').css('margin-left','75%');
                 $('.skill-three').css('margin-left','83.333%');
                 $('.skill-four').css('margin-left','91.666%');
             })
             $('.skill-two').click(function(){
+                setOpacity(this);
                 $(this).css('margin-left','8.333%');
                 $('.skill-three').css('margin-left','83.333%');
                 $('.skill-four').css('margin-left','91.666%');
             })
             $('.skill-three').click(function(){
+                setOpacity(this);
                 $('.skill-two').css('margin-left','8.333%');
                 $(this).css('margin-left','16.666%');
                 $('.skill-four').css('margin-left','91.666%');
             })
             $('.skill-four').click(function(){
+                setOpacity(this);
                 $('.skill-two').css('margin-left','8.3333%');
                 $('.skill-three').css('margin-left','16.666%');
                 $(this).css('margin-left','24.999%');
             })
-            /*$('.skill-two').click(function(){
-                $(this).css('margin-left','25%');
-                $('.skill-three').css('margin-left','70%');
-            })
-            $('.skill-three').click(function(){
-                $(this).css('margin-left','50%');
-//                $('.skill-two').css('margin-left','25%');
-                $('.skill-four').css('margin-left','95%');
-            })
-            $('.skill-four').click(function(){
-                $(this).css('margin-left','50%');
-                $('.skill-three').css('margin-left','70%');
-            })*/
-
-
         })
     </script>
 </head>
@@ -180,11 +177,13 @@
         </div>
     </div>-->
     <div class="container">
-        <div class="row">
-            <div class="col-xs-12 rel-pos" style="height: 400px;overflow-x: hidden;">
+        <div class="row" style="margin-top: 50px">
+            <div class="col-xs-12 rel-pos" style="height: 400px;overflow-x: hidden;perspective: 600px;margin-top: 50px">
                 <div class="skill-one skill">
                     <div class="row">
-                        <div class="col-xs-4"><h4>HTML+CSS</h4></div>
+                        <div class="col-xs-4">
+                            <h4>HTML+CSS</h4>
+                        </div>
                         <div class="col-xs-8">属性XXXX</div>
                     </div>
                 </div>
@@ -200,10 +199,6 @@
                 </div>
             </div>
         </div>
-                <!--<div class="col-xs-3 skill skill-one"></div>
-                <div class="col-xs-3 skill skill-two"></div>
-                <div class="col-xs-3 skill skill-three"></div>
-                <div class="col-xs-3 skill skill-four"></div>-->
     </div>
 </div>
 <div class="full third-stage">
