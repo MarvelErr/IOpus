@@ -6,6 +6,12 @@
   width: @width;
   height: @height;
 }
+.font(@size){
+  font-size: @size;
+}
+.all-height{
+  height: 100%;
+}
 /*相对定位*/
 .rel-pos{
   position: relative;
@@ -56,7 +62,7 @@
   }
 }
 
-.skillItem{
+/*.skillItem{
   line-height: 30px;
   font-size: 22px;
 };
@@ -64,9 +70,9 @@
   margin-top: -19px;
 //  padding-top: 3px;
 }
-/*.skill-hide-borderTop{
+*//*.skill-hide-borderTop{
   border-top: 0px;
-}*/
+}*//*
 .s-h-color(@color){
   background-color: @color;
 }
@@ -86,7 +92,7 @@
   border-radius: 4px;
   display: none;
   transition: 1s;
-}
+}*/
 .a-control{
   font-size: 30px !important;
   float: right;
@@ -162,25 +168,40 @@
 }
 /*second stage*/
 .skill{
-  .size(75%,300px);
+  .size(73%,300px);
   position: absolute;
   transition-duration: 1s;
+  border-radius: 5px;
   &:hover{
 //    margin-top: 10px;
   }
 }
+.control-margin{
+  margin-left: 8%;
+  transition-duration: 1s;
+}
+.skill-title{
+  .font(24px);
+  margin-top: 100px;
+}
+.skill-left{
+//  border-right: 1px solid #ffffff;
+}
 .skill-one{
-  background-color: rgba(0,179,214,1);
+  background-color: rgba(63,179,112,1);
 }
 .skill-two{
   margin-left: 25%;
   background-color: rgba(253,224,154,1);
+//  margin-top: 12px;
 }
 .skill-three{
   margin-left: 50%;
   background-color: rgba(255,244,205,1);
+//  margin-top: 24px;
 }
 .skill-four{
   margin-left: 75%;
   background-color: rgba(174,222,240,1);
+//  margin-top: 36px;
 }

@@ -58,8 +58,10 @@
                 skills.each(function(){
                     if(this==ele){
                         $(this).css({'opacity':'1','transform':'rotateY(0deg)'})
+                        $(this).find('.control-margin').css('margin-left','8%').addClass('text-center');
                     }else{
-                        $(this).css({'opacity':'.5','transform':'rotateY(-3deg)'})
+                        $(this).css({'opacity':'0.8','transform':'rotateY(-5deg)'});
+                        $(this).find('.control-margin').css('margin-left','0px').removeClass('text-center');
                     }
                 })
             }
@@ -180,19 +182,46 @@
         <div class="row" style="margin-top: 50px">
             <div class="col-xs-12 rel-pos" style="height: 400px;overflow-x: hidden;perspective: 600px;margin-top: 50px">
                 <div class="skill-one skill">
-                    <div class="row">
-                        <div class="col-xs-4">
-                            <h4>HTML+CSS</h4>
+                    <div class="row all-height">
+                        <div class="col-xs-4 all-height skill-left">
+                            <div class="control-margin text-center">
+                                <h4 class="skill-title">HTML+CSS</h4>
+                                <img src="../pic/logo/HTML5.gif" alt="" style="height: 50px;"/>
+                                <img src="../pic/logo/css.gif" alt="" style="height: 50px"/>
+                            </div>
+                        </div>
+                        <div class="col-xs-8">
+                            <ul>
+                                <li>熟悉HTML及CSS</li>
+                                <li>熟悉HTML5，了解其语义化标签和Canvas，Socket等技术</li>
+                                <li>熟练使用CSS3的新特性，构建。</li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-two skill">
+                    <div class="row all-height">
+                        <div class="col-xs-4 all-height skill-left">
+                            <div class="control-margin text-center">
+                                <h4 class="skill-title">JavaScript</h4>
+                                <img src="../pic/logo/JS.gif" alt="" style="height: 50px;"/>
+                            </div>
                         </div>
                         <div class="col-xs-8">属性XXXX</div>
                     </div>
                 </div>
-                <div class="skill-two skill">
-                    <div class="col-xs-4"><h4>JavaScript</h4></div>
-                    <div class="col-xs-8">熟悉YYYYY</div>
-                </div>
                 <div class="skill-three skill">
-                    <h4>Node.JS</h4>
+                    <div class="row all-height">
+                        <div class="col-xs-4 all-height skill-left">
+                            <div class="control-margin">
+                                <h4 class="skill-title">Node.JS</h4>
+                                <!--<img src="../pic/logo/node.gif" alt="" style="height: 50px;"/>-->
+                            </div>
+                        </div>
+                        <div class="col-xs-8">属性XXXX</div>
+                    </div>
                 </div>
                 <div class="skill-four skill">
                     <h4>Java</h4>
