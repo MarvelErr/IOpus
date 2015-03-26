@@ -13,82 +13,82 @@
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/bower_components/less/dist/less.min.js"></script>
     <script>
-        function progressAnimation(){
-            $('.first-progress').css('width','70%');
-            $('.second-progress').css('width','60%');
-            $('.third-progress').css('width','50%');
+        function progressAnimation() {
+            $('.first-progress').css('width', '70%');
+            $('.second-progress').css('width', '60%');
+            $('.third-progress').css('width', '50%');
         }
-      $(function(){
-          var flag=true;
-          var containerHeight=$(window).height()>650?$(window).height():650;
-          $('.full').css('height',containerHeight);
-          $('.more-top').css('margin-top',containerHeight*0.12);
-          /*canvas*/
-          $('.tlt').textillate();
-          $(function () {
-              $('[data-toggle="tooltip"]').tooltip()
-          });
+        $(function () {
+            var flag = true;
+            var containerHeight = $(window).height() > 650 ? $(window).height() : 650;
+            $('.full').css('height', containerHeight);
+            $('.more-top').css('margin-top', containerHeight * 0.12);
+            /*canvas*/
+            $('.tlt').textillate();
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            });
 
-          $('.second-stage').mouseover(function(){
-              if(flag){
-                  $('#stage-title-two').empty().append('<h1 class="title-two">'+'前端攻城狮，但并不只是前端哦~'+'</h1>');
-                  $('.title-two').textillate();
-                  flag=false;
-              }
-              setTimeout('progressAnimation()',1000);
-              $('.second-stage').unbind('mouseover');
-          })
-          $('.a-control').click(function(){
-              var that=this;
-              $('.skill-hide').each(function(){
-                  if($(this).attr('id')==that.classList[1]){
-                      $(this).toggle();
-                  }else{
-                      $(this).hide();
-                  }
-              })
-          })
-      })
+            $('.second-stage').mouseover(function () {
+                if (flag) {
+                    $('#stage-title-two').empty().append('<h1 class="title-two">' + '前端攻城狮，但并不只是前端哦~' + '</h1>');
+                    $('.title-two').textillate();
+                    flag = false;
+                }
+                setTimeout('progressAnimation()', 1000);
+                $('.second-stage').unbind('mouseover');
+            })
+            $('.a-control').click(function () {
+                var that = this;
+                $('.skill-hide').each(function () {
+                    if ($(this).attr('id') == that.classList[1]) {
+                        $(this).toggle();
+                    } else {
+                        $(this).hide();
+                    }
+                })
+            })
+        })
     </script>
     <!---->
     <script>
-        $(function(){
-            function setOpacity(ele){
-                var skills=$('.skill');
-                skills.each(function(){
-                    if(this==ele){
-                        $(this).css({'opacity':'1','transform':'rotateY(0deg)'})
-                        $(this).find('.control-margin').css('margin-left','8%').addClass('text-center');
-                    }else{
-                        $(this).css({'opacity':'0.8','transform':'rotateY(-5deg)'});
-                        $(this).find('.control-margin').css('margin-left','0px').removeClass('text-center');
+        $(function () {
+            function setOpacity(ele) {
+                var skills = $('.skill');
+                skills.each(function () {
+                    if (this == ele) {
+                        $(this).css({'opacity': '1', 'transform': 'rotateY(0deg)'})
+                        $(this).find('.skill-left').addClass('text-center');
+                    } else {
+                        $(this).css({'opacity': '0.8', 'transform': 'rotateY(-5deg)'});
+                        $(this).find('.skill-left').removeClass('text-center');
                     }
                 })
             }
 
-            $('.skill-one').click(function(){
+            $('.skill-one').click(function () {
                 setOpacity(this);
-                $('.skill-two').css('margin-left','75%');
-                $('.skill-three').css('margin-left','83.333%');
-                $('.skill-four').css('margin-left','91.666%');
+                $('.skill-two').css('margin-left', '75%');
+                $('.skill-three').css('margin-left', '83.333%');
+                $('.skill-four').css('margin-left', '91.666%');
             })
-            $('.skill-two').click(function(){
+            $('.skill-two').click(function () {
                 setOpacity(this);
-                $(this).css('margin-left','8.333%');
-                $('.skill-three').css('margin-left','83.333%');
-                $('.skill-four').css('margin-left','91.666%');
+                $(this).css('margin-left', '8.333%');
+                $('.skill-three').css('margin-left', '83.333%');
+                $('.skill-four').css('margin-left', '91.666%');
             })
-            $('.skill-three').click(function(){
+            $('.skill-three').click(function () {
                 setOpacity(this);
-                $('.skill-two').css('margin-left','8.333%');
-                $(this).css('margin-left','16.666%');
-                $('.skill-four').css('margin-left','91.666%');
+                $('.skill-two').css('margin-left', '8.333%');
+                $(this).css('margin-left', '16.666%');
+                $('.skill-four').css('margin-left', '91.666%');
             })
-            $('.skill-four').click(function(){
+            $('.skill-four').click(function () {
                 setOpacity(this);
-                $('.skill-two').css('margin-left','8.3333%');
-                $('.skill-three').css('margin-left','16.666%');
-                $(this).css('margin-left','24.999%');
+                $('.skill-two').css('margin-left', '8.3333%');
+                $('.skill-three').css('margin-left', '16.666%');
+                $(this).css('margin-left', '24.999%');
             })
         })
     </script>
@@ -99,8 +99,9 @@
         <div class="row">
             <div class="col-md-12">
                 <h1 class="tlt h1-color" data-in-effect="fadeIn">Hello, world!</h1>
-                <p>一名小小攻城狮的前端之路</p>
-                <span class="fa fa-envelope-o fontAColor spin"></span><span class="right-space" >luwenxull@outlook.com</span>
+                <p class="xing-shu">一名小小攻城狮的前端之路</p>
+                <span class="fa fa-envelope-o fontAColor spin"></span><span
+                        class="right-space">luwenxull@outlook.com</span>
                 <span class="fa fa-phone fontAColor spin"></span><span class="right-space">13646216010</span>
             </div>
         </div>
@@ -182,34 +183,32 @@
         <div class="row" style="margin-top: 50px">
             <div class="col-xs-12 rel-pos" style="height: 400px;overflow-x: hidden;perspective: 600px;margin-top: 50px">
                 <div class="skill-one skill">
-                    <div class="row all-height">
-                        <div class="col-xs-4 all-height skill-left">
-                            <div class="control-margin text-center">
-                                <h4 class="skill-title">HTML+CSS</h4>
-                                <img src="../pic/logo/HTML5.gif" alt="" style="height: 50px;"/>
-                                <img src="../pic/logo/css.gif" alt="" style="height: 50px"/>
-                            </div>
-                        </div>
-                        <div class="col-xs-8">
-                            <ul>
-                                <li>熟悉HTML及CSS</li>
-                                <li>熟悉HTML5，了解其语义化标签和Canvas，Socket等技术</li>
-                                <li>熟练使用CSS3的新特性，构建。</li>
-                                <li></li>
-                                <li></li>
-                            </ul>
-                        </div>
+                    <div class="col-xs-4 skill-left">
+                        <h4 class="skill-title">HTML+CSS</h4>
+                        <img src="../pic/logo/HTML5.gif" alt="" style="height: 50px;"/>
+                        <img src="../pic/logo/css.gif" alt="" style="height: 50px"/>
+                    </div>
+                    <div class="col-xs-8 as-table">
+                        <ul class="as-table-cell">
+                            <li>熟悉HTML5，了解其语义化标签，Canvas，Socket等技术</li>
+                            <li>熟悉CSS，熟练使用CSS3的新特性构建现代化的网页</li>
+                            <li>熟悉Bootstrap的使用，了解响应式网页设计</li>
+                            <li>了解Less的使用，精简并优化CSS代码</li>
+                        </ul>
                     </div>
                 </div>
                 <div class="skill-two skill">
-                    <div class="row all-height">
-                        <div class="col-xs-4 all-height skill-left">
-                            <div class="control-margin text-center">
-                                <h4 class="skill-title">JavaScript</h4>
-                                <img src="../pic/logo/JS.gif" alt="" style="height: 50px;"/>
-                            </div>
-                        </div>
-                        <div class="col-xs-8">属性XXXX</div>
+                    <div class="col-xs-4 skill-left">
+                        <h4 class="skill-title">JavaScript</h4>
+                        <img src="../pic/logo/JS.gif" alt="" style="height: 50px;"/>
+                    </div>
+                    <div class="col-xs-8 as-table">
+                        <ul class="as-table-cell">
+                            <li>熟悉JavaScript，有较深入的学习，熟悉其闭包，原型继承等特性</li>
+                            <li>熟练运用jQuery，学习过其源码，</li>
+                            <li>熟练使用AngularJS，熟悉其数据绑定，指令等核心理念，有大型项目开发经验</li>
+                            <li>了解模块化开发，了解AMD及CMD及Require/Sea.js</li>
+                        </ul>
                     </div>
                 </div>
                 <div class="skill-three skill">
@@ -220,7 +219,14 @@
                                 <!--<img src="../pic/logo/node.gif" alt="" style="height: 50px;"/>-->
                             </div>
                         </div>
-                        <div class="col-xs-8">属性XXXX</div>
+                        <div class="col-xs-8 as-table">
+                            <ul class="as-table-cell">
+                                <li>熟悉JavaScript，有较深入的学习，熟悉其闭包，原型继承等特性</li>
+                                <li>熟练运用jQuery，学习过其源码，</li>
+                                <li>熟练使用AngularJS，熟悉其数据绑定，指令等核心理念，有大型项目开发经验</li>
+                                <li>了解模块化开发，了解AMD及CMD及Require/Sea.js</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="skill-four skill">

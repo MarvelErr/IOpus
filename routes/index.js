@@ -16,4 +16,8 @@ module.exports=function(app){
   app.get('/blog',function(req,res){
     res.render('blog/blog')
   });
+  app.get('/thumbs',function(req,res){
+    console.log('get');
+    res.status(200).send(5);
+  })
 };

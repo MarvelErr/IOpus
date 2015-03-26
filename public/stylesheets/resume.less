@@ -2,6 +2,14 @@
 @controlMargin:24px;
 @fontAColor:#028FF8;
 @rightSpace:15px;
+@font-face {
+  font-family: BRACKEN Regular;
+  src: url('../font/BRACKEN_Regular.ttf ');
+}
+@font-face {
+  font-family: 叶根友行书;
+  src: url('../font/叶根友行书.ttf');
+}
 .size(@width,@height){
   width: @width;
   height: @height;
@@ -9,8 +17,11 @@
 .font(@size){
   font-size: @size;
 }
-.all-height{
-  height: 100%;
+.display(@style){
+  display: @style;
+}
+li{
+  margin-bottom: 10px;
 }
 /*相对定位*/
 .rel-pos{
@@ -21,6 +32,9 @@
 }
 .h1-color{
   color: #3366CC !important;
+}
+.xing-shu{
+  font-family: 叶根友行书;
 }
 .withPadding{
   padding-left: @leftPadding;
@@ -183,9 +197,21 @@
 .skill-title{
   .font(24px);
   margin-top: 100px;
+  font-family: BRACKEN Regular;
 }
 .skill-left{
-//  border-right: 1px solid #ffffff;
+  height: 100%;
+}
+.as-table{
+  .display(table);
+  height: 300px;
+  color: aliceblue;
+  .font(18px)
+}
+.as-table-cell{
+  .display(table-cell);
+  vertical-align: middle;
+  list-style-type: none;
 }
 .skill-one{
   background-color: rgba(63,179,112,1);
