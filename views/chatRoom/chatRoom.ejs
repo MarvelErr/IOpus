@@ -3,16 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>聊天室</title>
+    <link rel="stylesheet" href="/bower_components/font-awesome-4.3.0/css/font-awesome.min.css"/>
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/bower_components/angular/angular.min.js"></script>
     <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="/bower_components/angular-resource/angular-resource.min.js"></script>
     <script src="/bower_components/socket.io-client/socket.io.js"></script>
     <script>
-        var app=angular.module('app',['ui.router']);
+        var app=angular.module('app',['ui.router','ngResource']);
     </script>
-    <script src="js/service.js"></script>
-    <script src="js/chatRoutes.js"></script>
+    <script src="js/chatRoom/service.js"></script>
+    <script src="js/chatRoom/chatRoutes.js"></script>
+    <script src="/js/chatRoom/controller.js"></script>
     <!--Less-->
     <link rel="stylesheet/less" href="/stylesheets/login.less"/>
     <link rel="stylesheet/less" href="/stylesheets/chat.less"/>
@@ -22,7 +25,7 @@
 <body>
 <div class="container">
     <div class="row" ui-view>
-        <div class="clo-md-12">
+        <!--<div class="clo-md-12">
             <nav>
                 <a ui-sref="login">登录</a>
                 <a ui-sref="register">注册</a>
@@ -32,6 +35,17 @@
                 <span>用户名：</span><input type="text"/>
                 <span>密码：</span><input type="text"/>
             </div>
+        </div>-->
+        <div class="col-xs-4 col-xs-offset-4" ng-controller="initialController">
+            <form>
+                <div class="text-center">
+                    <div><h4>Login ChatRoom</h4></div>
+                    <div><input type="text" placeholder="enter your nickname" /></div>
+                    <div><input type="password" placeholder="enter your password"/></div>
+                    <button class="btn btn-reset"><span class="fa fa-times"></span>&nbsp;&nbsp;<span>重置</span></button>
+                    <button class="btn btn-ok" ng-click="register()"><span class="fa fa-check"></span>&nbsp;&nbsp;<span>注册</span></button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

@@ -10,6 +10,10 @@
   font-family: 叶根友行书;
   src: url('../font/叶根友行书.ttf');
 }
+@font-face {
+  font-family: RopaSansPro;
+  src: url('../font/RopaSansPro-BoldItalic.otf');
+}
 .size(@width,@height){
   width: @width;
   height: @height;
@@ -22,6 +26,7 @@
 }
 li{
   margin-bottom: 10px;
+  font-family: "BRACKEN Regular";
 }
 /*相对定位*/
 .rel-pos{
@@ -75,38 +80,6 @@ li{
     -moz-transform: rotate(360deg);
   }
 }
-
-/*.skillItem{
-  line-height: 30px;
-  font-size: 22px;
-};
-.skill-hide-position{
-  margin-top: -19px;
-//  padding-top: 3px;
-}
-*//*.skill-hide-borderTop{
-  border-top: 0px;
-}*//*
-.s-h-color(@color){
-  background-color: @color;
-}
-.color-one{
-  .s-h-color(#337ab7);
-}
-.color-two{
-  .s-h-color(#5bc0de);
-}
-.color-three{
-  .s-h-color(#d9534f);
-}
-.skill-hide{
-  .skill-hide-position;
-//  border: 1px solid #337AB7;
-//  .skill-hide-borderTop;
-  border-radius: 4px;
-  display: none;
-  transition: 1s;
-}*/
 .a-control{
   font-size: 30px !important;
   float: right;
@@ -197,7 +170,7 @@ li{
 .skill-title{
   .font(24px);
   margin-top: 100px;
-  font-family: BRACKEN Regular;
+  font-family: RopaSansPro;
 }
 .skill-left{
   height: 100%;

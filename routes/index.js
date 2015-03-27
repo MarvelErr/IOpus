@@ -3,12 +3,17 @@
  * GET home page.
  */
 
-module.exports=function(app){
+module.exports=function(app,db){
   app.get('/',function(req,res){
     res.render('index')
   });
+  /*chatRoom*/
   app.get('/chatRoom',function(req,res){
-    res.render('chatRoom')
+    res.render('chatRoom/chatRoom')
+  });
+  app.post('/register',function(req,res){
+    console.log(req.params);
+    res.end('success');
   });
   app.get('/myResume',function(req,res){
     res.render('resume/resume')
@@ -18,6 +23,6 @@ module.exports=function(app){
   });
   app.get('/thumbs',function(req,res){
     console.log('get');
-    res.status(200).send(5);
-  })
+    res.status(200).send('success');
+  });
 };

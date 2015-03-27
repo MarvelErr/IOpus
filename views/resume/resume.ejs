@@ -12,84 +12,13 @@
     <script src="/bower_components/textillate/jquery.textillate.js"></script>
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/bower_components/less/dist/less.min.js"></script>
+    <script src="/js/resume/resume.js"></script>
     <script>
-        function progressAnimation() {
-            $('.first-progress').css('width', '70%');
-            $('.second-progress').css('width', '60%');
-            $('.third-progress').css('width', '50%');
-        }
         $(function () {
-            var flag = true;
             var containerHeight = $(window).height() > 650 ? $(window).height() : 650;
             $('.full').css('height', containerHeight);
             $('.more-top').css('margin-top', containerHeight * 0.12);
-            /*canvas*/
             $('.tlt').textillate();
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip()
-            });
-
-            $('.second-stage').mouseover(function () {
-                if (flag) {
-                    $('#stage-title-two').empty().append('<h1 class="title-two">' + '前端攻城狮，但并不只是前端哦~' + '</h1>');
-                    $('.title-two').textillate();
-                    flag = false;
-                }
-                setTimeout('progressAnimation()', 1000);
-                $('.second-stage').unbind('mouseover');
-            })
-            $('.a-control').click(function () {
-                var that = this;
-                $('.skill-hide').each(function () {
-                    if ($(this).attr('id') == that.classList[1]) {
-                        $(this).toggle();
-                    } else {
-                        $(this).hide();
-                    }
-                })
-            })
-        })
-    </script>
-    <!---->
-    <script>
-        $(function () {
-            function setOpacity(ele) {
-                var skills = $('.skill');
-                skills.each(function () {
-                    if (this == ele) {
-                        $(this).css({'opacity': '1', 'transform': 'rotateY(0deg)'})
-                        $(this).find('.skill-left').addClass('text-center');
-                    } else {
-                        $(this).css({'opacity': '0.8', 'transform': 'rotateY(-5deg)'});
-                        $(this).find('.skill-left').removeClass('text-center');
-                    }
-                })
-            }
-
-            $('.skill-one').click(function () {
-                setOpacity(this);
-                $('.skill-two').css('margin-left', '75%');
-                $('.skill-three').css('margin-left', '83.333%');
-                $('.skill-four').css('margin-left', '91.666%');
-            })
-            $('.skill-two').click(function () {
-                setOpacity(this);
-                $(this).css('margin-left', '8.333%');
-                $('.skill-three').css('margin-left', '83.333%');
-                $('.skill-four').css('margin-left', '91.666%');
-            })
-            $('.skill-three').click(function () {
-                setOpacity(this);
-                $('.skill-two').css('margin-left', '8.333%');
-                $(this).css('margin-left', '16.666%');
-                $('.skill-four').css('margin-left', '91.666%');
-            })
-            $('.skill-four').click(function () {
-                setOpacity(this);
-                $('.skill-two').css('margin-left', '8.3333%');
-                $('.skill-three').css('margin-left', '16.666%');
-                $(this).css('margin-left', '24.999%');
-            })
         })
     </script>
 </head>
@@ -113,72 +42,6 @@
     </div>
 </div>
 <div class="full less-top second-stage">
-    <!--<div class="container">
-        <div class="row" style="margin-bottom: 15px">
-            <div class="col-md-12 text-center" id="stage-title-two">
-                <h1 class="res">reserve</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 text-right">
-                <span class="skillItem">HTML+CSS</span>
-            </div>
-            <div class="col-md-9">
-                <div class="progress adjustHeight">
-                    <div class="progress-bar progress-bar-striped active first-progress" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="">
-                        <span class="sr-only">50% Complete</span>
-                    </div>
-                    <a class="a-control groupOne fa fa-angle-double-down" data-toggle="tooltip" data-placement="top" title="点击查看详情"></a>
-                </div>
-                <div class="skill-hide color-one" id="groupOne">
-                    <ul>
-                        <li>吃</li>
-                        <li>喝</li>
-                        <li>玩</li>
-                        <li>乐</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-2 text-right">
-                <span class="skillItem">JavaScript</span>
-            </div>
-            <div class="col-md-9">
-                <div class="progress adjustHeight">
-                    <div class="progress-bar progress-bar-info progress-bar-striped active second-progress" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
-                        <span class="sr-only">45% Complete</span>
-                    </div>
-                    <a class="a-control groupTwo fa fa-angle-double-down" data-toggle="tooltip" data-placement="top" title="点击查看详情"></a>
-                </div>
-                <div class="skill-hide color-two" id="groupTwo">
-                    <ul>
-                        <li>吃</li>
-                        <li>喝</li>
-                        <li>玩</li>
-                        <li>乐</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-2 text-right">
-                <span class="skillItem">AngularJS</span>
-            </div>
-            <div class="col-md-9">
-                <div class="progress adjustHeight">
-                    <div class="progress-bar progress-bar-danger progress-bar-striped active third-progress" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">
-                        <span class="sr-only">45% Complete</span>
-                    </div>
-                    <a class="a-control groupThree fa fa-angle-double-down" data-toggle="tooltip" data-placement="top" title="点击查看详情"></a>
-                </div>
-                <div class="skill-hide color-three" id="groupThree">
-                    <ul>
-                        <li>吃</li>
-                        <li>喝</li>
-                        <li>玩</li>
-                        <li>乐</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>-->
     <div class="container">
         <div class="row" style="margin-top: 50px">
             <div class="col-xs-12 rel-pos" style="height: 400px;overflow-x: hidden;perspective: 600px;margin-top: 50px">
@@ -204,8 +67,8 @@
                     </div>
                     <div class="col-xs-8 as-table">
                         <ul class="as-table-cell">
-                            <li>熟悉JavaScript，有较深入的学习，熟悉其闭包，原型继承等特性</li>
-                            <li>熟练运用jQuery，学习过其源码，</li>
+                            <li>熟悉JavaScript，熟悉其闭包，原型继承等特性</li>
+                            <li>熟练运用jQuery，学习过其源码，对其各模块的实现有一定的认知</li>
                             <li>熟练使用AngularJS，熟悉其数据绑定，指令等核心理念，有大型项目开发经验</li>
                             <li>了解模块化开发，了解AMD及CMD及Require/Sea.js</li>
                         </ul>
@@ -215,22 +78,37 @@
                     <div class="row all-height">
                         <div class="col-xs-4 all-height skill-left">
                             <div class="control-margin">
-                                <h4 class="skill-title">Node.JS</h4>
+                                <h4 class="skill-title">Server-Side</h4>
                                 <!--<img src="../pic/logo/node.gif" alt="" style="height: 50px;"/>-->
                             </div>
                         </div>
                         <div class="col-xs-8 as-table">
                             <ul class="as-table-cell">
-                                <li>熟悉JavaScript，有较深入的学习，熟悉其闭包，原型继承等特性</li>
-                                <li>熟练运用jQuery，学习过其源码，</li>
-                                <li>熟练使用AngularJS，熟悉其数据绑定，指令等核心理念，有大型项目开发经验</li>
-                                <li>了解模块化开发，了解AMD及CMD及Require/Sea.js</li>
+                                <li>了解Node.JS，了解其单线程异步等特点</li>
+                                <li>熟悉Express框架，快速构建web服务器</li>
+                                <li>了解Mongodb，使用mongoose操作数据库</li>
+                                <li></li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="skill-four skill">
-                    <h4>Java</h4>
+                    <div class="row all-height">
+                        <div class="col-xs-4 all-height skill-left">
+                            <div class="control-margin">
+                                <h4 class="skill-title">Others</h4>
+                                <!--<img src="../pic/logo/node.gif" alt="" style="height: 50px;"/>-->
+                            </div>
+                        </div>
+                        <div class="col-xs-8 as-table">
+                            <ul class="as-table-cell">
+                                <li>了解Node的单线程异步等特点</li>
+                                <li>熟悉Express框架，</li>
+                                <li>了解</li>
+                                <li>了解模块化开发，了解AMD及CMD及Require/Sea.js</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

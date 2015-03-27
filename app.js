@@ -8,7 +8,14 @@ var routes = require('./routes/index');
 var http = require('http');
 var path = require('path');
 var app = express();
-
+/*mongodb,mongoose*/
+var mongoose=require('mongoose'),url='mongodb://localhost/test';
+mongoose.connect(url);
+var db= mongoose.connection;
+db.on('error',console.error.bind(console,'connection error:'));
+db.once('open',function(){
+  console.log('the mongodb is now opened')
+});
 // all environments
 app.set('port', process.env.PORT || 3000);
 /*app.set('views', path.join(__dirname, 'views'));*/
@@ -27,7 +34,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-routes(app);
+routes(app,db);
 var server=http.createServer(app);
 var io=require('socket.io')(server);
 server.listen(app.get('port'), function(){
