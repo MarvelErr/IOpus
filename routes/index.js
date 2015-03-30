@@ -4,6 +4,8 @@
  */
 
 module.exports=function(app,db,mongoose){
+  var models=require('./mongoModel');
+  var secondNav=models.getSecondNav(mongoose);
   app.get('/',function(req,res){
     res.render('index')
   });
@@ -23,21 +25,29 @@ module.exports=function(app,db,mongoose){
     res.render('blog/blog')
   });
   app.get('/secondNavOfBlog',function(req,res){
-    var Schema=mongoose.Schema;
-    var secondNavSchema=new Schema({
-      navTitle:String
+    var secondNavEntity=new secondNav({});
+    /*secondNavEntity.findByName(req.query.firstNav,function(err,results){
+      if(err){
+        console.log(err)
+      }else{
+        console.log(results)
+      }
+    });*/
+    var query=secondNav.where({navTitle:req.query.firstNav});
+    query.findOne(function(err,results){
+      if(err){
+        console.log(err)
+      }else{
+        console.log(results)
+      }
     });
-    var secondNav = mongoose.model('secondNav', secondNavSchema);
-    var luwenxu=new secondNav({navTitle:'wenxu'});
-    luwenxu.save(function(err){
+    /*luwenxu.save(function(err){
       if(err){
         console.log(err)
       }else{
         console.log('saved OK!')
       }
-    });
-    console.log(req.query.firstNav);
-
+    });*/
     res.end('success');
   });
   app.get('/thumbs',function(req,res){
