@@ -1,14 +1,37 @@
-.bgc(@bgcColor){
-  background-color: @bgcColor;
-}
-.box-size(@width,@height){
+.size(@width,@height){
   width: @width;
   height: @height;
 }
-.nav-left{
-  .bgc(#38A7DC);
-  height: 800px;
+.position(@pos){
+  position: @pos;
 }
-.sup-menu{
-  cursor: pointer;
+.DIY-height{
+  height: 700px;
+}
+/**/
+.primary-navigation{
+  background-color: rgb(207, 220, 41);
+  &:extend(.DIY-height);
+}
+.primary-ul{
+  list-style-type: none;
+  margin: auto -15px auto -15px;
+  padding: 0;
+  color: #ffffff;
+}
+.primary-ul li{
+  font-size: 25px;
+ padding-left: 25px;
+  &:hover{
+    background-color: #D9E72C;
+    cursor: default;
+  }
+}
+.second-navigation{
+  background-color: rgb(220, 229, 213);
+  &:extend(.DIY-height);
+}
+.blog-content{
+  background-color: rgb(170, 176, 185);
+  &:extend(.DIY-height);
 }

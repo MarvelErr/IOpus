@@ -15,22 +15,20 @@
             $('.full').css('width',$(document).width())
         })
     </script>
+    <script src="/js/blog/blog.js"></script>
 </head>
 <body>
 <div class="container full">
     <div class="row">
-        <div class="col-xs-2 nav-left">
-            <div class="dropdown">
-                    <span class="sup-menu" data-toggle="dropdown">HTML+CSS</span><span class="fa fa-angle-right"></span>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-                </ul>
-            </div>
+        <div class="col-xs-2 primary-navigation">
+            <ul class="primary-ul">
+                <li class="primary-li"><span>HTML</span></li>
+                <li class="primary-li">CSS</li>
+                <li class="primary-li">JavaScript</li>
+            </ul>
         </div>
-        <div class="col-xs-10" style="height: 800px">a</div>
+        <div class="col-xs-3 second-navigation"></div>
+        <div class="col-xs-7 blog-content"></div>
     </div>
 </div>
 </body>

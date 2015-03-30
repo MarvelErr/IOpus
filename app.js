@@ -34,7 +34,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-routes(app,db);
+routes(app,db,mongoose);
 var server=http.createServer(app);
 var io=require('socket.io')(server);
 server.listen(app.get('port'), function(){
