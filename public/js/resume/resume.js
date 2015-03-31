@@ -19,8 +19,6 @@ $(function () {
             }
         })
     }
-    console.log($(window).scrollTop());
-    console.log($('.second-stage').offset());
     /*监听滚动事件*/
     ($(window).scrollTop()>$('.second-stage').offset().top)&&$('.skill-one').trigger('click');
     $(window).scroll(function(){

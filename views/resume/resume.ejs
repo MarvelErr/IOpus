@@ -19,11 +19,20 @@
             $('.full').css('height', containerHeight);
             $('.more-top').css('margin-top', containerHeight * 0.12);
             $('.tlt').textillate();
+            var scrollTop=$(window).scrollTop();
+            $(window).scroll(function(event){
+               /* if($(this).scrollTop()>scrollTop){
+                    window.scrollBy(0,containerHeight);
+                }else{
+                    window.scrollBy(0,-containerHeight);
+                }*/
+                console.log($(this).scrollTop());
+            })
         })
     </script>
 </head>
 <body>
-<div class="jumbotron full">
+<div class="full jumbotron">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
