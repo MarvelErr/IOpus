@@ -45,6 +45,7 @@ module.exports=function(app,db,mongoose){
         res.send({status:'suc',results:results});
       }
     });
+
 /*    var query=secondNav.where({firstNav:req.query.firstNav});
     query.findOne(function(err,results){
       if(err){
