@@ -28,7 +28,12 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));//设置静态文件目录
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'views')));
+app.use(function(req,res,next){
+  console.log('Time: %d', Date.now());
+  next();
+});
 
 // development only
 if ('development' == app.get('env')) {
