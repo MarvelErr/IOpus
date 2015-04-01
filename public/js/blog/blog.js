@@ -9,7 +9,7 @@
                 console.log(data);
                 $('.second-navigation ul').empty();
                 for(var i= 0;i<data.results.length;i++)
-                $('.second-navigation ul').append('<li>'+data.results[i].secondNav+'</li>')
+                $('.second-navigation ul').append('<li>'+'<span>'+data.results[i].secondNav+'</span>'+'</li>')
             })
         })
     })

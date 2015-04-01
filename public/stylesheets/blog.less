@@ -25,18 +25,35 @@
   margin: auto -15px auto -15px;
   padding: 0;
   color: #ffffff;
-}
-.primary-ul li{
-  font-size: 25px;
- padding-left: 25px;
-  &:hover{
-    background-color: #E9C3D7;
-    cursor: default;
+  li{
+    font-size: 25px;
+    padding-left: 25px;
+    &:hover{
+      background-color: #E9C3D7;
+      cursor: default;
+    }
   }
 }
+
 .second-navigation{
   background-color: rgb(187, 226, 232);
   &:extend(.DIY-height);
+  padding-top: 100px;
+  ul{
+    list-style-type: none;
+    margin: auto -15px auto -15px;
+    padding: 0;
+    color: slategray;
+    line-height: 35px;
+    li{
+      font-size: 18px;
+      text-align: center;
+      &:hover{
+        background-color: #D3ECF0;
+        cursor: default;
+      }
+    }
+  }
 }
 .blog-content{
   background-color: rgb(224, 241, 244);

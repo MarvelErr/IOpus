@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Variable Object</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/bower_components/font-awesome-4.3.0/css/font-awesome.css"/>
+    <link rel="stylesheet/less" href="/stylesheets/blogList/VariableObject.less"/>
+    <link rel="stylesheet/less" href="/stylesheets/blogList/default.less"/>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/bower_components/less/dist/less.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <article>
+                <header>
+                    <h3>变量对象--Variable Object</h3>
+                </header>
+                <section>
+                    <h4><span class="fa fa-bookmark"></span>定义</h4>
+                    <p>
+                        如果变量与执行上下文相关，那变量自己应该知道它的数据存储在哪里，并且知道如何访问。
+                        这种机制称为变量对象(variable object)。
+                    </p>
+
+                    <div>
+                        <p>变量对象(VO)是一个与执行上下文相关的特殊对象，它存储在上下文中声明的以下内容：</p>
+<pre>
+变量 (var, 变量声明);
+函数声明 (FunctionDeclaration, FD);
+函数的形参
+</pre>
+                        <p>可以做如下理解</p>
+<pre>
+activeExecutionContext = {
+  VO: {
+    // 上下文数据（var, FD, function arguments)
+  }
+};
+</pre>
+                    </div>
+                </section>
+                <section>
+                    <h4><span class="fa fa-bookmark"></span>不同上下文中的变量对象</h4>
+                    <h5>全局上下文中的变量对象</h5>
+                    <p>全局上下文中的变量对象就是全局对象自己：</p>
+<pre>
+VO(globalContext)===global
+</pre>
+                    <h5>函数上下文中的变量对象</h5>
+                    <p>在函数执行上下文中，VO是不能直接访问的，此时由活动对象(activation object,AO)扮演VO的角色。</p>
+<pre>
+VO(functionContext)===AO
+</pre>
+                    <p>在进入函数上下文时，活动对象被创建，通过函数的arguments属性初始化，包括如下属性</p>
+<pre>
+callee — 指向当前函数的引用
+length — 真正传递的参数个数
+properties-indexes (字符串类型的整数) 属性的值就是函数的参数值(按参数列表从左到右排列)。 properties-indexes内部元素的个数等于arguments.length. properties-indexes 的值和实际传递进来的参数之间是共享的。
+</pre>
+                </section>
+                <section>
+                    <h4><span class="fa fa-bookmark"></span>处理上下文代码的两个阶段</h4>
+                    <p>执行上下文的代码可以分为<strong>进入执行上下文</strong>和<strong>执行代码</strong></p>
+                    <h5>进入执行上下文</h5>
+                    <p>包含如下属性</p>
+                    <p><strong>函数的所有形参</strong>(如果我们是在函数执行上下文中)— 由名称和对应值组成的一个变量对象的属性被创建；没有传递对应参数的话，那么由名称和undefined值组成的一种变量对象的属性也将被创建。</p>
+                    <p><strong>所有函数声明</strong>(FunctionDeclaration, FD)—由名称和对应值（函数对象(function-object)）组成一个变量对象的属性被创建；如果变量对象已经存在相同名称的属性，则完全替换这个属性。</p>
+                    <p><strong>所有变量声明</strong>(var, VariableDeclaration)— 由名称和对应值（undefined）组成一个变量对象的属性被创建；如果变量名称跟已经声明的形式参数或函数相同，则变量声明不会干扰已经存在的这类属性</p></p>
+                    <p>举例如下</p>
+<pre>
+function test(a, b) {
+    var c = 10;
+    function d() {}
+    var e = function _e() {};
+    (function x() {});
+}
+test(10);
+</pre>
+                    <p>当传入参数10执行该函数时，AO表现如下</p>
+<pre>
+AO(test) = {
+    a: 10,
+    b: undefined,
+    c: undefined,
+    d: reference to FunctionDeclaration "d"
+    e: undefined
+};
+</pre>
+                    <p class="warning"><span class="fa fa-tag"></span>不包括函数表达式，详情见<a href="">函数</a></p>
+                    <h5>代码执行</h5>
+                    <p>在此期间，AO/VO被修改如下</p>
+<pre>
+AO['c'] = 10;
+AO['e'] = reference to FunctionExpression "_e";
+</pre>
+                    <p class="warning"><span class="fa fa-tag"></span>JS中函数声明的提前可做如上理解</p>
+                </section>
+                <section>
+                    <h4><span class="fa fa-bookmark"></span>关于变量</h4>
+                    <p>通常，各类文章和JavaScript相关的书籍都声称：“不管是使用var关键字(在全局上下文)还是不使用var关键字(在任何地方)，都可以声明一个变量”。请记住，这是错误的概念：</p>
+                    <p class="warning"><span class="fa fa-tag"></span>任何时候，变量只能通过使用var关键字才能声明</p>
+                    <p>如下例所示</p>
+<pre>
+alert(a); // undefined
+alert(b); // 报错，"b" 没有声明
+b = 10;
+var a = 20;
+</pre>
+                    <p>没有关键字var，仅仅是给全局对象创建了一个新属性(但它不是变量)。“不是变量”并不是说它不能被改变，而是指它不符合ECMAScript规范中的变量概念，所以它“不是变量”</p>
+                    <p>变量相对于简单属性来说，变量有一个特性(attribute)：{DontDelete}，这个特性的含义就是不能用delete操作符直接删除变量属性。</p>
+                </section>
+            </article>
+        </div>
+    </div>
+</div>
+</body>
+</html>
