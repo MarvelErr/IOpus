@@ -5,7 +5,7 @@
 
 module.exports=function(app,db,mongoose){
   var models=require('./mongoModel');
-  var secondNavModel=models.getSecondNavModel(mongoose);
+  var catalogueModel=models.getCatalogueModel(mongoose);
   app.get('/',function(req,res){
     res.render('index')
   });
@@ -24,35 +24,26 @@ module.exports=function(app,db,mongoose){
   app.get('/blog',function(req,res){
     res.render('blog/blog')
   });
-  app.get('/secondNavOfBlog',function(req,res){
-    /*简单的初始化*/
-    /*var arrs=['JavaScript--作用域链与闭包','JavaScript--浏览器兼容实例'];
-    for(var i=0;i<arrs.length;i++){
-      var secondNavEntity=new secondNavModel({firstNav:'javascript',secondNav:arrs[i]});
-      secondNavEntity.save(function(err){
-        if(err){
-          console.log(err)
-        }else{
-          console.log('saved OK!')
-        }
-      });
-    }*/
-    var secondNavEntity=new secondNavModel({});
-    secondNavEntity.findByName(req.query.firstNav.toLowerCase(),function(err,results){
+  app.get('/sl_c',function(req,res){
+    var catalogue=new catalogueModel({});
+    var query=req.query.fl_c=='JavaScript'?'JS':req.query.fl_c;
+    catalogue.sl(query,function(err,results){
       if(err){
         res.send({status:'err'});
       }else{
         res.send({status:'suc',results:results});
       }
     });
-/*    var query=secondNav.where({firstNav:req.query.firstNav});
-    query.findOne(function(err,results){
+  });
+  app.get('/blogContent',function(req,res){
+    var catalogue=new catalogueModel({});
+    catalogue.getContent(req.query.sl_c,function(err,results){
       if(err){
-        console.log(err)
+        res.send({status:'err'});
       }else{
-        console.log(results)
+        res.send({status:'suc',results:results});
       }
-    });*/
+    });
   });
   /*博客内容*/
   app.get('/blog/vo',function(req,res){

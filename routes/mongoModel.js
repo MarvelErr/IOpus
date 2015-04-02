@@ -2,16 +2,20 @@
  * Created by luwenxull on 2015/3/30.
  */
 
-exports.getSecondNavModel=function(mongoose){
-    var secondNavModel,Schema;
-    Schema=mongoose.Schema;
-    var secondNavSchema=new Schema({
-        firstNav:String,
-        secondNav:String
+exports.getCatalogueModel=function(mongoose){
+    var Schema=mongoose.Schema;
+    var catalogueSchema=new Schema({
+        id:Number,
+        fl_c:String,
+        sl_c:String,
+        content:Array
     });
-    secondNavSchema.methods.findByName = function(title, callback) {
-        return this.model('secondNav').find({firstNav: title}, callback);
+    catalogueSchema.methods.sl = function(title, callback) {
+        return this.model('catalogue').find({fl_c: title}, callback);
     };
-    secondNavModel = mongoose.model('secondNav', secondNavSchema);
-    return secondNavModel;
+    catalogueSchema.methods.getContent = function(title, callback) {
+        return this.model('catalogue').find({sl_c: title}, callback);
+    };
+    var catalogueModel = mongoose.model('catalogue', catalogueSchema);
+    return catalogueModel;
 };
