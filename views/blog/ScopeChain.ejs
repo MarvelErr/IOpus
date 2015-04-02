@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>This</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/bower_components/font-awesome-4.3.0/css/font-awesome.css"/>
+    <link rel="stylesheet/less" href="/stylesheets/blogList/VariableObject.less"/>
+    <link rel="stylesheet/less" href="/stylesheets/blogList/default.less"/>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/bower_components/less/dist/less.min.js"></script>
+</head>
+<body>
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <header>
+                    <h3>作用域链--Scope Chain</h3>
+                </header>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <section>
+                    <h4><span class="fa fa-bookmark"></span>定义</h4>
+                    <p>作用域链大多数与内部函数相关</p>
+<pre>
+activeExecutionContext = {
+    VO: {...},//variable object
+    this: thisValue
+};
+</pre>
+                    <p>this与上下文中可执行代码的类型有直接关系，this值在进入上下文时确定，并且在上下文运行期间永久不变。</p>
+                </section>
+                <section>
+                    <h4><span class="fa fa-bookmark"></span>全局代码中的this</h4>
+                    <p>this始终指向全局对象自身</p>
+                </section>
+                <section>
+                    <h4><span class="fa fa-bookmark"></span>函数中的this</h4>
+                </section>
+            </div>
+        </div>
+    </div>
+</article>
+</body>
+</html>

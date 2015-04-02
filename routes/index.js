@@ -54,9 +54,17 @@ module.exports=function(app,db,mongoose){
       }
     });*/
   });
-  app.get('/vo',function(req,res){
+  /*博客内容*/
+  app.get('/blog/vo',function(req,res){
     res.render('blog/VariableObject')
   });
+  app.get('/blog/this',function(req,res){
+    res.render('blog/This')
+  });
+  app.get('/blog/sc', function (req, res) {
+    res.render('blog/ScopeChain')
+  });
+
   app.get('/thumbs',function(req,res){
     console.log('get');
     res.status(200).send('success');
