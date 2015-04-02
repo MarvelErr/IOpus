@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head lang="en">
     <meta charset="UTF-8">
-    <title>This</title>
+    <title>Scope Chain</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
@@ -29,19 +29,54 @@
                     <h4><span class="fa fa-bookmark"></span>定义</h4>
                     <p>作用域链大多数与内部函数相关</p>
 <pre>
+var x = 10;
+function foo() {
+    var y = 20;
+    function bar() {
+        alert(x + y);
+  }
+    return bar;
+}
+foo()(); // 30
+</pre>
+                    <p>作用域链正是内部上下文所有变量对象（包括父变量对象）的列表。此链用来变量查询。即在上面的例子中，“bar”上下文的作用域链包括AO(bar)、AO(foo)和VO(global)。</p>
+                    <p><strong>函数上下文的作用域链在函数调用时创建的</strong>，包含活动对象和这个函数内部的[[scope]]属性。下面详细的讨论一个函数的[[scope]]属性。</p>
+                    <p>在上下文中作如下表示</p>
+<pre>
 activeExecutionContext = {
-    VO: {...},//variable object
-    this: thisValue
+    VO: {...}, // or AO
+    this: thisValue,
+    ScopeChain: [ // Scope chain
+      // 所有变量对象的列表
+      // for identifiers lookup
+    ]
 };
 </pre>
-                    <p>this与上下文中可执行代码的类型有直接关系，this值在进入上下文时确定，并且在上下文运行期间永久不变。</p>
+                    <p>这些与函数的生命周期有关，下面详解一个函数的生命周期</p>
                 </section>
                 <section>
-                    <h4><span class="fa fa-bookmark"></span>全局代码中的this</h4>
-                    <p>this始终指向全局对象自身</p>
+                    <h4><span class="fa fa-bookmark"></span>函数生命周期</h4>
+                    <h5>函数创建</h5>
+<pre>
+var x = 10;
+function foo() {
+    var y = 20;
+    alert(x + y);
+}
+foo();
+</pre>
+                    <p>如上所示，foo函数在激活时，其AO中并不包含x的值，他之所以能够访问x，是通过函数内部的[[scope]]属性来实现的。</p>
+                    <p class="warning"><span class="fa fa-tag"></span>[[scope]]在函数创建时被存储－－静态（不变的），永远永远，直至函数销毁。
+                        即：函数可以永不调用，但[[scope]]属性已经写入，并存储在函数对象中。</p>
+                    <h5>函数激活</h5>
+                    <p>用通常的ECMAScript 数组表现作用域和[[scope]]，则函数在激活时（[[scope]]已经存在），AO被压入函数当前作用域链的最前端！这一点对于标识符的解析很重要
+                        因为这样可以保证最内部（前）作用域的变量被优先解析。</p>
                 </section>
                 <section>
-                    <h4><span class="fa fa-bookmark"></span>函数中的this</h4>
+                    <h4><span class="fa fa-bookmark"></span>作用域特征</h4>
+                    <h5>闭包</h5>
+                    <p>详情参见<a href="">闭包</a></p>
+                    <h5>通过构造函数创建的函数中的[[scope]]</h5>
                 </section>
             </div>
         </div>
