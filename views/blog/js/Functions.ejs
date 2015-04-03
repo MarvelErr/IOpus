@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Variable Object</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/bower_components/font-awesome-4.3.0/css/font-awesome.css"/>
+    <link rel="stylesheet/less" href="/stylesheets/blogList/VariableObject.less"/>
+    <link rel="stylesheet/less" href="/stylesheets/blogList/default.less"/>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/bower_components/less/dist/less.min.js"></script>
+</head>
+<body>
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <header>
+                    <h3>函数--Functions</h3>
+                </header>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <section>
+                    <h4><span class="fa fa-bookmark"></span>类型</h4>
+                    <p>有三种函数类型：函数声明，函数表达式和函数构造器创建的函数。每一种都有自己的特点。</p>
+                    <h5>函数声明（FD）</h5>
+<pre>
+有一个特定的名称
+在源码中的位置：要么处于程序级（Program level），要么处于其它函数的主体（FunctionBody）中
+在进入上下文阶段创建
+影响变量对象
+</pre>
+                    <h5>函数表达式（FE）</h5>
+<pre>
+在源码中须出现在表达式的位置
+有可选的名称
+不会影响变量对象
+在代码执行阶段创建
+</pre>
+                    <p>以下是ECMAScript中的表达式</p>
+<pre>
+(function foo() {});// 圆括号（分组操作符）内只能是表达式
+[function bar() {}];// 在数组初始化器内只能是表达式
+1, function baz() {};// 逗号也只能操作表达式
+</pre>
+                    <h5>构造器语法</h5>
+<pre>
+var foo=new Function(){
+    ...
+}
+</pre>
+                    <p>这里的<em>new</em>操作符不是必须的</p>
+                </section>
+                <section>
+                    <h4><span class="fa fa-bookmark"></span>关于圆括号的问题</h4>
+                    <p>”为何在函数创建后的立即调用中必须用圆括号来包围它？”，答案就是：表达式句子的限制就是这样的</p>
+                    <p>按照标准，表达式语句不能以一个大括号{开始是因为他很难与代码块区分，同样，他也不能以函数关键字开始，因为很难与函数声明进行区分。
+                        即，如果我们定义一个立即执行的函数，在其创建后立即按以下方式调用：</p>
+<pre>
+function () {
+    ...
+}();
+// 即便有名称
+function foo() {
+    ...
+}();
+</pre>
+                    <p>上述两种方式都会报错</p>
+                    <p>解释器会将这两个都看做是函数声明，因为他是以function关键字开头。
+                        第一个例子，我们会得到SyntaxError错误，是因为函数声明没有名字（函数声明必须有名字）。
+                        第二个后面的圆括号会被当做是分组操作符，而不是一个函数调用</p>
+                    <p>创建表达式最简单的方式就是用分组操作符括号，里边放入的永远是表达式，所以解释器在解释的时候就不会出现歧义。
+                        在代码执行阶段这个的function就会被创建，并且立即执行，然后自动销毁（如果没有引用的话）。</p>
+                    <p>如下才是正确的</p>
+<pre>
+(function foo(x) {
+    alert(x);
+})(1);
+</pre>
+                    <p class="warning"><span class="fa fa-tag"></span>如果函数已经处于表达式的位置，那么圆括号就不是必须的</p>
+                </section>
+                <section>
+                    <h4><span class="fa fa-bookmark"></span>命名的函数表达式</h4>
+                    <p>当函数表达式FE有一个名称（称为命名函数表达式，NFE）时，将会出现一个重要的特点。
+                        即，FE在递归调用中可以通过名称调用自身。</p>
+<pre>
+(function foo(bar) {
+    if (bar) {
+        return;
+  }
+    foo(true); // "foo" 是可用的
+})();
+// 在外部，是不可用的
+foo();
+</pre>
+                    <p>“foo”储存在什么地方？</p>
+                    <p>在foo的活动对象中？不是，因为在foo中没有定义任何”foo”。在上下文的父变量对象中创建foo？也不是，因为按照定义——FE不会影响VO(变量对象)——从外部调用foo我们可以实实在在的看到。
+                        以下是关键点。</p>
+                    <p class="warning"><span class="fa fa-tag"></span>当解释器在代码执行阶段遇到命名的FE时，在FE创建之前，它创建了辅助的特定对象，并添加到当前作用域链的最前端。然后它创建了FE，此时函数获取了[[Scope]] 属性——创建这个函数上下文的作用域链）。
+                        此后，FE的名称添加到特定对象上作为唯一的属性；这个属性的值是引用到FE上。最后一步是从父作用域链中移除那个特定的对象。</p>
+                    <p>因此，在函数外部这个名称不可用的（因为它不在父作用域链中），但是，特定对象已经存储在函数的[[scope]]中，在那里名称是可用的。</p>
+                </section>
+            </div>
+        </div>
+    </div>
+</article>
+</body>
+</html>

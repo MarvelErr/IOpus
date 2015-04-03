@@ -66,6 +66,7 @@ function foo() {
 foo();
 </pre>
                     <p>如上所示，foo函数在激活时，其AO中并不包含x的值，他之所以能够访问x，是通过函数内部的[[scope]]属性来实现的。</p>
+                    <p>[[scope]]是所有父变量对象的层级链，处于当前函数上下文之上，在函数创建时存于其中。</p>
                     <p class="warning"><span class="fa fa-tag"></span>[[scope]]在函数创建时被存储－－静态（不变的），永远永远，直至函数销毁。
                         即：函数可以永不调用，但[[scope]]属性已经写入，并存储在函数对象中。</p>
                     <h5>函数激活</h5>
@@ -77,6 +78,24 @@ foo();
                     <h5>闭包</h5>
                     <p>详情参见<a href="">闭包</a></p>
                     <h5>通过构造函数创建的函数中的[[scope]]</h5>
+                    <p class="warning"><span class="fa fa-tag"></span>通过函构造函数创建的函数的[[scope]]属性总是唯一的全局对象,因此通过这种函数创建除全局之外的最上层的上下文闭包是不可能的。</p>
+                    <h5>代码执行时对作用域链的影响</h5>
+                    <p>在代码执行阶段有两个声明能修改作用域链，这就是<strong>with</strong>声明和<strong>catch</strong>语句。
+                        它们添加到作用域链的最前端，对象须在这些声明中出现的标识符中查找。如果发生其中的一个，作用域链简要的作如下修改：</p>
+<pre>
+ScopeChain = withObject|catchObject + AO|VO + [[Scope]]
+</pre>
+                    <p>如下是一个综合示例</p>
+<pre>
+var x = 10, y = 10;
+with ({x: 20}) {
+    var x = 30, y = 30;
+    alert(x); // 30
+    alert(y); // 30
+}
+alert(x); // 10
+alert(y); // 30
+</pre>
                 </section>
             </div>
         </div>

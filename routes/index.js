@@ -47,13 +47,16 @@ module.exports=function(app,db,mongoose){
   });
   /*博客内容*/
   app.get('/blog/vo',function(req,res){
-    res.render('blog/VariableObject')
+    res.render('blog/js/VariableObject')
   });
   app.get('/blog/this',function(req,res){
-    res.render('blog/This')
+    res.render('blog/js/This')
   });
   app.get('/blog/sc', function (req, res) {
-    res.render('blog/ScopeChain')
+    res.render('blog/js/ScopeChain')
+  });
+  app.get('/blog/fc', function (req, res) {
+    res.render('blog/js/Functions')
   });
 
   app.get('/thumbs',function(req,res){
