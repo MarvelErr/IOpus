@@ -24,7 +24,7 @@ module.exports=function(app,db,mongoose){
   app.get('/blog',function(req,res){
     res.render('blog/blog')
   });
-  app.get('/sl_c',function(req,res){
+  app.get('/blog/sl_c',function(req,res){
     var catalogue=new catalogueModel({});
     var query=req.query.fl_c=='JavaScript'?'JS':req.query.fl_c;
     catalogue.sl(query,function(err,results){
@@ -57,6 +57,9 @@ module.exports=function(app,db,mongoose){
   });
   app.get('/blog/fc', function (req, res) {
     res.render('blog/js/Functions')
+  });
+  app.get('/blog/object',function(req,res){
+    res.render('blog/js/Object')
   });
 
   app.get('/thumbs',function(req,res){

@@ -5,7 +5,7 @@
     $(function(){
         $('.primary-ul li').click(function(){
             var content=$(this).text();
-            $.get('sl_c',{fl_c:content},function(data){
+            $.get('/blog/sl_c',{fl_c:content},function(data){
                 console.log(data);
                 $('.second-navigation ul').empty();
                 for(var i= 0;i<data.results.length;i++)
