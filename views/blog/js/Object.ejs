@@ -150,14 +150,23 @@ var obj={
                     <p><em>writable</em>表示能否修改属性值</p>
                     <p><em>value</em>表示属性值</p>
                     <p class="warning"><span class="fa fa-tag"></span>一旦将configurable修改为false之后，就只能再修改writable特性，修改别的特性时会导致错误。</p>
-                    <p>要修改一个属性默认的特性，必须调用<em>Object.defineProperty()</em>方法</p>
+                    <p>要修改一个属性默认的特性，必须调用<em>Object.defineProperty()</em>方法或者<em>Object.defineProperties()</em>方法</p>
 <pre>
 Object.defineProperty(obj,property,descriptor){
     //descriptor是一个对象，属性必须是上述四个特性中的一个或多个。
 }
+Object.defineProperties(obj,
+    {name:{value:'l'},age:{value:1}}
+);
 </pre>
+                    <p class="warning"><span class="fa fa-tag"></span>通过这两个方法定义时，属性的特性默认为<em>false</em></p>
                     <h5>访问器属性</h5>
                     <p>数据属性的四个特性分别是<em>configurable</em>，<em>enumerable</em>，<em>get</em>，<em>set</em>。</p>
+                    <h5>读取属性的特性</h5>
+<pre>
+console.log(Object.getOwnPropertyDescriptor(obj,'name'))
+//Object {value: "l", writable: false, enumerable: false, configurable: false}
+</pre>
                 </section>
             </div>
         </div>
