@@ -43,7 +43,9 @@
     $('#canvas1').on('mousemove',function(event){
         ctx.clearRect(0,0,canvas.clientWidth,canvas.clientHeight);
         draw();
-    })
+    });
+
+    $('#canvas1').attr('width',$('#canvasContainer').width())
 })();
 
 /*

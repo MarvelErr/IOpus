@@ -15,23 +15,6 @@
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/bower_components/less/dist/less.min.js"></script>
     <script src="/js/resume/resume.js"></script>
-    <script>
-        $(function () {
-            var containerHeight = $(window).height() > 650 ? $(window).height() : 650;
-            $('.full').css('height', containerHeight);
-            $('.more-top').css('margin-top', containerHeight * 0.12);
-            $('.tlt').textillate();
-            var scrollTop=$(window).scrollTop();
-            $(window).scroll(function(event){
-               /* if($(this).scrollTop()>scrollTop){
-                    window.scrollBy(0,containerHeight);
-                }else{
-                    window.scrollBy(0,-containerHeight);
-                }*/
-                console.log($(this).scrollTop());
-            })
-        })
-    </script>
 </head>
 <body>
 <div class="full jumbotron">
@@ -46,7 +29,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" id="canvasContainer">
                 <canvas id="canvas1" width="1168" height="400"></canvas>
             </div>
         </div>
@@ -126,22 +109,6 @@
     </div>
 </div>
 <div class="full third-stage">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-1">
-                <h1>我的项目与经验</h1>
-            </div>
-            <div class="col-md-11">
-                <div class="time-line">
-                    <div class="breath b-one">
-                        <div class="dialog"></div>
-                    </div>
-                    <div class="breath b-two"></div>
-                    <div class="breath b-three"></div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 <script src="/js/resume/canvas.js"></script>
 </body>
