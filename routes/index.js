@@ -61,6 +61,9 @@ module.exports=function(app,db,mongoose){
   app.get('/blog/object',function(req,res){
     res.render('blog/js/Object')
   });
+  app.get('/blog/prototype',function(req,res){
+    res.render('blog/js/Prototype')
+  });
 
   app.get('/thumbs',function(req,res){
     console.log('get');
