@@ -1,81 +1,89 @@
-.size(@width,@height){
+.size(@width,@height) {
   width: @width;
   height: @height;
 }
-.position(@pos){
+
+.position(@pos) {
   position: @pos;
 }
-.radius(@radius){
+
+.radius(@radius) {
   border-radius: @radius;
 }
-.align-center{
+
+.align-center {
   margin: 0 auto;
 }
-.DIY-height{
-  height: 700px;
+
+.DIY-height {
+//  height: 700px;
 }
+
 /**/
-.primary-navigation{
+.primary-navigation {
   background-color: rgb(208, 171, 191);
   &:extend(.DIY-height);
   padding-top: 100px;
 }
-.primary-ul{
+
+.primary-ul {
   list-style-type: none;
   margin: auto -15px auto -15px;
   padding: 0;
   color: #ffffff;
-  li{
+  li {
     font-size: 25px;
     padding-left: 25px;
-    &:hover{
+    &:hover {
       background-color: #E9C3D7;
       cursor: default;
     }
   }
 }
 
-.second-navigation{
+.second-navigation {
   background-color: rgb(187, 226, 232);
   &:extend(.DIY-height);
   padding-top: 100px;
-  ul{
+  ul {
     list-style-type: none;
     margin: auto -15px auto -15px;
     padding: 0;
     color: slategray;
     line-height: 35px;
-    li{
+    li {
       font-size: 18px;
       text-align: center;
-      &:hover{
+      &:hover {
         background-color: #D3ECF0;
         cursor: default;
       }
     }
   }
 }
-.blog-content{
+
+.blog-content {
   background-color: rgb(224, 241, 244);
   &:extend(.DIY-height);
-  div{
-    .size(70%,100px);
+  /*div {
+    .size(70%, 100px);
     .radius(7px);
     .align-center;
     transition-duration: .5s;
-    border: 1px solid rgb(157,200,217);
+    border: 1px solid rgb(157, 200, 217);
     margin-top: 30px;
-    &:hover{
-    box-shadow: 2px 2px 4px #88AEBD;
-  }
-    h5{
-      border-left: 3px solid rgb(63,179,112);
+    &:hover {
+      box-shadow: 2px 2px 4px #88AEBD;
+    }
+    h5 {
+      border-left: 3px solid rgb(63, 179, 112);
       margin-left: 3%;
       padding-left: 3px;
       font-size: 18px;
 
     }
-  }
+  }*/
 }
+
 /*blog-content*/
 

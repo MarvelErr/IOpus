@@ -4,6 +4,7 @@
  */
 
 module.exports=function(app,db,mongoose){
+  var fs=require('fs');
   var models=require('./mongoModel');
   var catalogueModel=models.getCatalogueModel(mongoose);
   app.get('/',function(req,res){
@@ -35,15 +36,19 @@ module.exports=function(app,db,mongoose){
       }
     });
   });
-  app.get('/blogContent',function(req,res){
-    var catalogue=new catalogueModel({});
+  app.get('/blog/title',function(req,res){
+    var rs=fs.createReadStream('./views/blog/js/Object.ejs',{encoding:'utf-8'});
+    rs.on('data',function(data){
+      res.send(data)
+    });
+   /* var catalogue=new catalogueModel({});
     catalogue.getContent(req.query.sl_c,function(err,results){
       if(err){
         res.send({status:'err'});
       }else{
         res.send({status:'suc',results:results});
       }
-    });
+    });*/
   });
   /*博客内容*/
   app.get('/blog/vo',function(req,res){
@@ -62,7 +67,7 @@ module.exports=function(app,db,mongoose){
     res.render('blog/js/Object')
   });
   app.get('/blog/prototype',function(req,res){
-    res.render('blog/js/Prototype')
+    res.render('blog/js/Proto')
   });
 
   app.get('/thumbs',function(req,res){

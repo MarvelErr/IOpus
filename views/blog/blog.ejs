@@ -6,19 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/bower_components/font-awesome-4.3.0/css/font-awesome.css"/>
+    <link rel="stylesheet/less" href="/stylesheets/blogList/default.less"/>
     <link rel="stylesheet/less" href="/stylesheets/blog.less"/>
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/bower_components/less/dist/less.min.js"></script>
     <script>
         $(function(){
-            $('.full').css('width',$(document).width())
+            console.log($(window).height());
+            console.log($(document).height());
+            $('.container').css('width','100%')
         })
     </script>
     <script src="/js/blog/blog.js"></script>
 </head>
 <body>
-<div class="container full">
+<div class="container">
     <div class="row">
         <div class="col-xs-2 primary-navigation">
             <ul class="primary-ul">
@@ -31,12 +34,6 @@
             <ul class="second-ul"></ul>
         </div>
         <div class="col-xs-7 blog-content">
-            <div><h5>javascript高手进阶</h5></div>
-            <div>
-                <iframe src="/t.html" frameborder="0"></iframe></div>
-            <div>
-
-            </div>
         </div>
     </div>
 </div>
