@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>原型与继承</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/bower_components/font-awesome-4.3.0/css/font-awesome.css"/>
+    <link rel="stylesheet/less" href="/stylesheets/blogList/default.less"/>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/bower_components/less/dist/less.min.js"></script>
+</head>
+<body>
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <header>
+                    <h3>原型与继承</h3>
+                </header>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <section>
+                    <h4><span class="fa fa-bookmark"></span>原型与构造函数</h4>
+                    <p>JS所有的函数都有一个<em>prototype</em>属性，这个属性引用了一个对象，即原型对象，简称原型。
+                        这个函数包括构造函数和普通函数。</p>
+                    <p>在默认情况下，该函数的原型对象会取得一个<em>constructor</em>属性，这个属性指向该函数。</p>
+<pre>
+function A(){}
+A.prototype.constructor==A;//true
+</pre>
+                    <h5>创建一个实例</h5>
+                    <p>当调用该构造函数创建一个实例对象时，基本步骤如下：</p>
+<pre>
+1. 创建obj对象：obj=new Object();
+2. 将obj的内部[[prototype]]指向构造他的函数A的prototype(AProto);
+3. 将obj作为this去调用构造函数A，从而设置成员（即对象属性和对象方法）并初始化。
+</pre>
+                    <p class="warning"><span class="fa fa-tag"></span>实例内部的<em>[[prototype]]</em>指向构造函数的原型，而不是构造函数本身。
+                        实例也会包含一个<em>constructor</em>属性，默认情况下指向构造函数</p>
+                    <h5>判断实例的原型</h5>
+                    <p><em>isPrototypeOf()</em>和<em>Object.getPrototypeOf()</em>。</p>
+                    <p>使用这两个方法可以判断实例与原型之间的关系</p>
+<pre>
+function A(){}
+A.prototype.name='AProto';
+var a=new A();
+A.prototype.isPrototypeOf(a);//true
+Object.getPrototypeOf(a);//A {name: "AProto"}
+</pre>
+                </section>
+                <section>
+                    <h4><span class="fa fa-bookmark"></span>原型与继承</h4>
+                    <p>上例就是一个简单的继承的例子，实例继承获得原型中的<em>name</em>属性，详细情况参考<a href="/blog/object">对象</a></p>
+                    <h5>修改默认的原型对象</h5>
+<pre>
+A.prototype={name:'AProto'};
+A.prototype.constructor==A//false
+a.constructor==A//false
+A.prototype.constructor=Object//true
+</pre>
+                    <p>如上的写法本质上完全重写了原型对象，所以该原型的<em>constructor</em>不再指向A</p>
+                    <p>需要注意的时，实例与原型对象之间存在如下的恒等关系，即</p>
+                    <p class="warning"><span class="fa fa-tag"></span>实例对象的<em>constructor</em>属性永远指向构造函数原型的<em>constructor</em></p>
+<pre>
+a.constructor===A.prototype.constructor
+</pre>
+                    <p>如果<em>constructor</em>属性很需要的话，可以显示的覆盖，但是如下方法也是修改<em>enumerable</em>特性。</p>
+<pre>
+A.prototype={
+    constructor:A,
+    name:'AProto'
+};
+</pre>
+                    <h5>原型链</h5>
+                    <p class="warning"><span class="fa fa-tag"></span>上述代码即构造出一个原型链，就是将一个构造函数的原型设置为另一个构造函数的实例，这也是实现继承的最普遍方式。</p>
+<pre>
+function SuperType(){
+    this.name='superType';
+    this.sayName=function(){
+        alert(this.name)
+    }
+}
+function SubType(){
+    this.name='subType';
+}
+SubType.prototype=new SuperType();
+var subObj=new SubType();
+subObj.sayName();//'subType
+</pre>
+                    <p>在上例中，<em>SubType</em>的原型是<em>SuperType</em>的实例，因此<em>subObj</em>继承了<em>sayName()</em>方法，
+                        同时自身的<em>name</em>属性屏蔽了原型中的同名属性。</p>
+                    <h5><em>instanceof</em> 操作符</h5>
+                    <p>只要是在原型链中出现过的构造函数，都会返回<em>true</em>。</p>
+<pre>
+subObj instanceof SubType;//true
+subObj instanceof SuperType;//true
+</pre>
+                </section>
+            </div>
+        </div>
+    </div>
+</article>
+</body>
+</html>
