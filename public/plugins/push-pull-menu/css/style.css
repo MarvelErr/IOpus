@@ -48,7 +48,7 @@ main {
   height: 100vh;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  background-color: #9cb3a8;
+  background-color: aliceblue;
   /* Force Hardware Acceleration in WebKit */
   -webkit-transform: translateZ(0);
   -moz-transform: translateZ(0);
@@ -341,7 +341,11 @@ main .summary {
   color: rgba(255, 255, 255, 0.3);
 }
 .cd-nav .cd-contact-info a {
-  color: #ffffff;
+  color: rgba(255,255,255,.3);
+  cursor: pointer;
+}
+.cd-nav .cd-contact-info a:hover {
+  color: rgba(255,255,255,1);
 }
 .cd-nav .cd-contact-info span {
   display: block;

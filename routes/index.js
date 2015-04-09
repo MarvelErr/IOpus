@@ -27,7 +27,7 @@ module.exports=function(app,db,mongoose){
   });
   app.get('/blog/sl_c',function(req,res){
     var catalogue=new catalogueModel({});
-    var query=req.query.fl_c=='JavaScript'?'JS':req.query.fl_c;
+    var query=req.query.fl_c;
     catalogue.sl(query,function(err,results){
       if(err){
         res.send({status:'err'});
@@ -37,19 +37,17 @@ module.exports=function(app,db,mongoose){
     });
   });
   app.get('/blog/title',function(req,res){
-    res.render(req.query);
-    /*var rs=fs.createReadStream('./views/blog/js/Object.ejs',{encoding:'utf-8'});
-    rs.on('data',function(data){
-      res.send(data)
-    });*/
-   /* var catalogue=new catalogueModel({});
+    var catalogue=new catalogueModel({});
     catalogue.getContent(req.query.sl_c,function(err,results){
       if(err){
         res.send({status:'err'});
       }else{
         res.send({status:'suc',results:results});
       }
-    });*/
+    });
+  });
+  app.get('/blog/content',function(req,res){
+    res.render(req.query.src)
   });
   /*博客内容*/
   app.get('/blog/vo',function(req,res){
