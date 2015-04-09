@@ -37,10 +37,11 @@ module.exports=function(app,db,mongoose){
     });
   });
   app.get('/blog/title',function(req,res){
-    var rs=fs.createReadStream('./views/blog/js/Object.ejs',{encoding:'utf-8'});
+    res.render(req.query);
+    /*var rs=fs.createReadStream('./views/blog/js/Object.ejs',{encoding:'utf-8'});
     rs.on('data',function(data){
       res.send(data)
-    });
+    });*/
    /* var catalogue=new catalogueModel({});
     catalogue.getContent(req.query.sl_c,function(err,results){
       if(err){
