@@ -68,6 +68,10 @@ module.exports=function(app,db,mongoose){
   app.get('/blog/prototype',function(req,res){
     res.render('blog/js/Proto')
   });
+  /*blog/html*/
+  app.get('/blog/position',function(req,res){
+    res.render('blog/html/position')
+  });
 
   app.get('/thumbs',function(req,res){
     console.log('get');
