@@ -14,8 +14,8 @@ module.exports=function(app,db,mongoose){
   app.get('/chatRoom',function(req,res){
     res.render('chatRoom/chatRoom')
   });
-  app.post('/register',function(req,res){
-    console.log(req.params);
+  app.post('/register/',function(req,res){
+    console.log(req);
     res.end('success');
   });
   app.get('/myResume',function(req,res){
