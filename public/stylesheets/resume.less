@@ -28,6 +28,11 @@
 .display(@style){
   display: @style;
 }
+.jumbotron{
+  background-image: url('../pic/wm.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
 li{
   margin-bottom: 10px;
   font-family: "BRACKEN Regular";
@@ -40,10 +45,12 @@ li{
   display: inline-block;
 }
 .h1-color{
-  color: #3366CC !important;
+  color: aliceblue !important;
+//  font-style: italic;
 }
 .xing-shu{
   font-family: 叶根友行书;
+  color: cornsilk;
 }
 .withPadding{
   padding-left: @leftPadding;
@@ -63,8 +70,12 @@ li{
 .less-top{
   .topMargin(-30px);
 }
+.fa{
+  font-size: 25px !important;
+}
 .right-space{
   margin-right: @rightSpace;
+  font-size: 20px;
 }
 .fontAColor{
   color: @fontAColor;
@@ -197,14 +208,23 @@ li{
   margin-left: 25%;
   background-color: rgba(253,224,154,1);
 //  margin-top: 12px;
+  ul{
+    color: maroon;
+  }
 }
 .skill-three{
   margin-left: 50%;
   background-color: rgba(255,244,205,1);
 //  margin-top: 24px;
+  ul{
+    color: #000000;
+  }
 }
 .skill-four{
   margin-left: 75%;
   background-color: rgba(174,222,240,1);
 //  margin-top: 36px;
+  ul{
+    color: royalblue;
+  }
 }
