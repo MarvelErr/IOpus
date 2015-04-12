@@ -14,7 +14,7 @@ module.exports=function(app,db,mongoose){
   app.get('/chatRoom',function(req,res){
     res.render('chatRoom/chatRoom')
   });
-  app.post('/register/',function(req,res){
+  app.post('/register',function(req,res){
     console.log(req);
     res.end('success');
   });
@@ -72,7 +72,9 @@ module.exports=function(app,db,mongoose){
   app.get('/blog/position',function(req,res){
     res.render('blog/html/position')
   });
-
+  app.get('/blog/svg',function(req,res){
+    res.render('blog/html/svg')
+  });
   app.get('/thumbs',function(req,res){
     console.log('get');
     res.status(200).send('success');
