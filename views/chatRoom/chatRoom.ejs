@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/bower_components/font-awesome-4.3.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/plugins/sweetalert/css/sweet-alert.css"/>
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="http://fonts.useso.com/css?family=RobotoDraft:300,500">
     <link rel="stylesheet" type="text/css" href="/plugins/login/css/default.css">
@@ -16,6 +17,7 @@
     <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="/bower_components/angular-resource/angular-resource.min.js"></script>
     <script src="/bower_components/socket.io-client/socket.io.js"></script>
+    <script src="/plugins/sweetalert/js/sweet-alert.min.js"></script>
     <script>
         var app = angular.module('app', ['ui.router', 'ngResource']);
     </script>
@@ -39,7 +41,7 @@
         </i>
         <div class="photo">
         </div>
-        <span>Sign in with your account</span>
+        <span>Sign up with your account</span>
         <form id="login-form">
             <div id="u" class="form-group">
                 <input id="username" spellcheck=false class="form-control" name="username" type="text" size="18"
@@ -76,7 +78,7 @@
             <div class="form-group">
                 <input type="checkbox" id="rem">
                 <!--<label for="rem">Stay Signed in</label>-->
-                <button id="submit" type="submit" ripple ng-click="signIn($event)">Sign in</button>
+                <button id="submit" type="submit" ripple ng-click="signUp($event)">Sign Up</button>
             </div>
         </form>
     </div>

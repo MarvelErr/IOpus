@@ -61,7 +61,7 @@
                     }, 200);
                 }
             })
-        })
+        });
         $('.title-box').on('click','a',function(){
             $.get('/blog/content',{src:$(this).data('src')},function(data){
                 //console.log(data)

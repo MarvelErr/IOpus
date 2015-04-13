@@ -2,6 +2,13 @@
  * Created by luwenxull on 2015/3/26.
  */
 $(function () {
+    $.ajax({
+        url: '/homepageCount',
+        type: 'PUT',
+        success: function(response) {
+            //...
+        }
+    });
     $('[data-toggle="tooltip"]').tooltip();
     $('.fa-thumbs-o-up').click(function () {
         /*$.ajax({

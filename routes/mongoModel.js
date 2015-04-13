@@ -19,3 +19,16 @@ exports.getCatalogueModel=function(mongoose){
     var catalogueModel = mongoose.model('catalogue', catalogueSchema);
     return catalogueModel;
 };
+/*userModel*/
+exports.getUserModel=function(mongoose){
+    var Schema=mongoose.Schema;
+    var userSchema=new Schema({
+        name:String,
+        password:String
+    });
+    userSchema.methods.findByName=function(name,callback){
+        return this.model('user').find({name:name},callback)
+    };
+    var userModel=mongoose.model('user',userSchema);
+    return userModel;
+};
