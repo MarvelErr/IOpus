@@ -4,7 +4,7 @@
 app.controller('singInController',function($scope,$resource,$state){
     var erroru = $('erroru'), errorp = $('errorp'), submit = $('#submit'), udiv = $('#u'), pdiv = $('#p');
     $scope.signUp=function($event){
-        var user=$resource('/signUp');
+        var signUp=$resource('/signUp'),signIn=$resource('/signIn');
         var success=true;
         $event.preventDefault();
         if (!$scope.username) {
@@ -20,12 +20,15 @@ app.controller('singInController',function($scope,$resource,$state){
             pdiv.removeAttr('errr');
         }
         if(success){
-            user.save({
+            signUp.save({
                 name:$scope.username,
                 password:$scope.password
             },function(res){
                 if(res.status=='success'){
-                    $state.go('chat');
+                    signIn.save({
+                       name:$scope.username
+                    });
+                    $state.go('chat',{name:$scope.username});
                 }else{
                     swal("Something Wrong!", "用户名已存在!", "error");
                 }

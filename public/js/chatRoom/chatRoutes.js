@@ -15,32 +15,42 @@ app.config(function ($stateProvider) {
         }
     }).state('chat', {
         templateUrl: '/chatRoom/chat.html',
-        url: '/chat',
-        controller: function ($scope, socket, $state) {
-            {
-                $scope.messages = [];
-                socket.on('messageAdded', function (msgs) {
-                    $scope.$apply(
-                        function () {
-                            $scope.messages = msgs;
-                        }
-                    )
-                });
-                socket.on('allMessages', function (msgs) {
-                    $scope.$apply(
-                        function () {
-                            $scope.messages = msgs;
-                        }
-                    )
-                });
-                $scope.send = function () {
-                    if ($scope.msg) {
-                        socket.emit('newMessage', {
-                            name: window.localStorage.IOpusUser,
-                            msg: $scope.msg
-                        });
-                        $scope.msg = null;
+        url: '/chat/:name',
+        resolve: {
+            socket: function () {
+                var socket = io.connect('10.10.17.56:3000/default');
+                return socket;
+            }
+        },
+        controller: function ($scope, socket, $state, $stateParams,$rootScope) {
+            $rootScope.$on('$stateChangeStart',function(event){
+                console.log('change');
+                event.preventDefault();
+            });
+            $scope.speaker = $state.params.name;
+            console.log($state.current);
+            $scope.messages = [];
+            socket.on('messageAdded', function (msgs) {
+                $scope.$apply(
+                    function () {
+                        $scope.messages = msgs;
                     }
+                )
+            });
+            socket.on('allMessages', function (msgs) {
+                $scope.$apply(
+                    function () {
+                        $scope.messages = msgs;
+                    }
+                )
+            });
+            $scope.send = function () {
+                if ($scope.msg) {
+                    socket.emit('newMessage', {
+                        name: $scope.speaker,
+                        msg: $scope.msg
+                    });
+                    $scope.msg = null;
                 }
             }
         }

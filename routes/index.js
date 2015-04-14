@@ -5,6 +5,7 @@
 module.exports = function (app, db, mongoose) {
     var fs = require('fs');
     var models = require('./mongoModel');
+    var onlineUsers=[];
     var catalogueModel = models.getCatalogueModel(mongoose), userModel = models.getUserModel(mongoose);
     var count = 1;
     app.put('/homepageCount', function (req, res) {
@@ -33,12 +34,16 @@ module.exports = function (app, db, mongoose) {
                 user.save(function (err) {
                     if (err) console.log(err);
                     else {
-                        console.log('new user was saved');
-                        res.send({status: 'success'})
+                        //console.log('new user was saved');
+                        res.send({status: 'success'});
                     }
                 });
             }
         });
+    });
+    app.post('/signIn',function(req,res){
+        onlineUsers.push(req.body.name);
+        res.send({status:'success'});
     });
     app.get('/myResume', function (req, res) {
         res.render('resume/resume')

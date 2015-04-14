@@ -47,15 +47,18 @@ server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
-var messages=[],
-    sockets=[];
-io.on('connection', function (socket) {
-  sockets.push(socket);
-  socket.emit('allMessages',messages);
+//var messages=[];
+    //sockets=[];
+var defaultRoom=io.of('/default'),messagesOfDefaultRoom=[];
+defaultRoom.on('connection', function (socket) {
+  //sockets.push(socket);
+  //socket.emit('allMessages',messagesOfDefaultRoom);
+  defaultRoom.emit('allMessages',messagesOfDefaultRoom);
   socket.on('newMessage',function(message){
-    messages.push(message);
-    for(var i=0;i<sockets.length;i++){
-      sockets[i].emit('messageAdded',messages);
-    }
+    messagesOfDefaultRoom.push(message);
+    defaultRoom.emit('messageAdded',messagesOfDefaultRoom)
+  });
+  socket.on('disconnect',function(){
+    console.log('disconnect')
   })
 });
