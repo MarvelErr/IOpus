@@ -15,22 +15,22 @@ app.config(function ($stateProvider) {
         }
     }).state('chat', {
         templateUrl: '/chatRoom/chat.html',
-        url: '/chat/:name/:something',
+        url: '/chat/:name',
         resolve: {
             socket: function () {
-                var socket = io.connect('10.10.17.56:3000/default');
+                var socket = io.connect('http://luwenxull.vicp.cc:3000/default');
                 return socket;
             }
         },
         controller: function ($scope, socket, $state, $stateParams,$rootScope) {
-            $rootScope.$on('$stateChangeStart',function(event,toState, toParams, fromState, fromParams){
+            /*$rootScope.$on('$stateChangeStart',function(event,toState, toParams, fromState, fromParams){
                 //console.log('change');
                 console.log(toState);
                 console.log(toParams);
                 console.log(fromState);
                 console.log(fromParams);
                 event.preventDefault();
-            });
+            });*/
             $scope.speaker = $state.params.name;
             //console.log($state.current);
             $scope.messages = [];

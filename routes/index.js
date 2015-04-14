@@ -5,7 +5,7 @@
 module.exports = function (app, db, mongoose) {
     var fs = require('fs');
     var models = require('./mongoModel');
-    var onlineUsers=[];
+    var onlineUsers = [];
     var catalogueModel = models.getCatalogueModel(mongoose), userModel = models.getUserModel(mongoose);
     var count = 1;
     app.put('/homepageCount', function (req, res) {
@@ -41,9 +41,22 @@ module.exports = function (app, db, mongoose) {
             }
         });
     });
-    app.post('/signIn',function(req,res){
-        onlineUsers.push(req.body.name);
-        res.send({status:'success'});
+    app.post('/signIn', function (req, res) {
+        //onlineUsers.push(req.body.name);
+        var user = new userModel({
+            name: req.body.name,
+            password: req.body.password
+        });
+        user.findByName(req.body.name, function (err, results) {
+            if (err) {
+                console.log(err)
+            } else if (results.length > 0) {
+                res.send({status: 'success'});
+            } else {
+                res.send({status: 'failed'})
+            }
+        });
+        //res.send({status:'success'});
     });
     app.get('/myResume', function (req, res) {
         res.render('resume/resume')
