@@ -15,7 +15,7 @@ app.config(function ($stateProvider) {
         }
     }).state('chat', {
         templateUrl: '/chatRoom/chat.html',
-        url: '/chat/:name',
+        url: '/chat/:name/:something',
         resolve: {
             socket: function () {
                 var socket = io.connect('10.10.17.56:3000/default');
@@ -23,12 +23,16 @@ app.config(function ($stateProvider) {
             }
         },
         controller: function ($scope, socket, $state, $stateParams,$rootScope) {
-            $rootScope.$on('$stateChangeStart',function(event){
-                console.log('change');
+            $rootScope.$on('$stateChangeStart',function(event,toState, toParams, fromState, fromParams){
+                //console.log('change');
+                console.log(toState);
+                console.log(toParams);
+                console.log(fromState);
+                console.log(fromParams);
                 event.preventDefault();
             });
             $scope.speaker = $state.params.name;
-            console.log($state.current);
+            //console.log($state.current);
             $scope.messages = [];
             socket.on('messageAdded', function (msgs) {
                 $scope.$apply(
