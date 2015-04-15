@@ -27,6 +27,11 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
+app.use(express.cookieParser());
+app.use(express.session({
+  secret:'chatRoom',
+  cookie:{path: '/', httpOnly: true, maxAge: 1000*30*24*60*60 }//30days
+}));
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'views')));

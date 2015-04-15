@@ -19,6 +19,12 @@ module.exports = function (app, db, mongoose) {
     app.get('/chatRoom', function (req, res) {
         res.render('chatRoom/chatRoom')
     });
+    app.get('/getUsername',function(req,res){
+        res.send({name:req.session})
+    });
+    app.delete('/userExit',function(req,res){
+        res.send('ok')
+    });
     app.post('/signUp', function (req, res) {
         //console.log(req);
         var user = new userModel({
@@ -47,16 +53,17 @@ module.exports = function (app, db, mongoose) {
             name: req.body.name,
             password: req.body.password
         });
-        user.findByName(req.body.name, function (err, results) {
-            if (err) {
-                console.log(err)
-            } else if (results.length > 0) {
-                res.send({status: 'success'});
-            } else {
-                res.send({status: 'failed'})
-            }
-        });
-        //res.send({status:'success'});
+            user.findByName(req.body.name, function (err, results) {
+                if (err) {
+                    console.log(err)
+                } else if (results.length > 0&&results[0].password==req.body.password) {
+                    res.send({status: 'success'});
+                    req.session[req.body.name]=req.body.name;
+                    onlineUsers.push(req.body.name);
+                } else {
+                    res.send({status: 'failed'})
+                }
+            });
     });
     app.get('/myResume', function (req, res) {
         res.render('resume/resume')

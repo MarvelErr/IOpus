@@ -1,23 +1,31 @@
 <div class="container">
-    <div class="col-md-12">
-        <div class="panel panel-default room">
-            <div class="panel-heading room-header">Chat Room</div>
-            <div class="panel-body room-content" style="overflow: auto">
-                <div class="messages">
-                    <div ng-repeat="msg in messages track by $index" class="single">
-                        <div class="speaker" ng-show="speaker!=msg.name"><span>{{msg.name}}</span></div>
-                        <div class="words" ng-show="speaker!=msg.name"><span>{{msg.msg}}</span></div>
-                        <div class="own" ng-show="speaker==msg.name"><div class="words" ><span>{{msg.msg}}</span></div></div>
+    <div class="row">
+        <div class="col-xs-12">
+            <span>{{user}}</span>
+            <button class="btn btn-danger" ng-click="exit()">退出登录</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-default room">
+                <div class="panel-heading room-header">Chat Room</div>
+                <div class="panel-body room-content" style="overflow: auto">
+                    <div class="messages">
+                        <div ng-repeat="msg in messages track by $index" class="single">
+                            <div class="speaker" ng-show="user!=msg.name"><span>{{msg.name}}</span></div>
+                            <div class="words" ng-show="user!=msg.name"><span>{{msg.msg}}</span></div>
+                            <div class="own" ng-show="user==msg.name"><div class="words" ><span>{{msg.msg}}</span></div></div>
+                        </div>
                     </div>
-                </div>
-                <form class="message-creator">
-                    <div class="form-group">
+                    <form class="message-creator">
+                        <div class="form-group">
                         <textarea ng-model='msg' class="form-control" name="" id=""
                                   placeholder="">
                         </textarea>
-                        <button class="btn btn-primary" ng-click="send()">发送</button>
-                    </div>
-                </form>
+                            <button class="btn btn-primary" ng-click="send()">发送</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
