@@ -52,7 +52,7 @@ Object.create(prototype,[config]){
                 <p>该方法可以实现任意原型对象的继承，通过传入<em>null</em>可以创建一个不继承任何属性或方法的对象</p>
                 <h5>原型继承的兼容实现</h5>
 <pre>
-function inherit(){
+function inherit(prototype){
     if(prototype==null) throw TypeError;
     if(Object.create) return Object.create(prototype);
     var type=typeof prototype;
