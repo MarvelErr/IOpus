@@ -10,9 +10,9 @@
     <script src="/bower_components/less/dist/less.min.js"></script>
     <script>
         (function () {
-            function _mz() {
+            function _sparrow() {
                 this.models = {};
-                this.mzWatchers = [];
+                this.sparrowWatchers = [];
                 this.registerModel = function (name, func) {
                     this.models[name] = new func();
                     this.models[name].cst = func;
@@ -20,41 +20,41 @@
                 };
             }
 
-            var mz = new _mz();
+            var sparrow = new _sparrow();
             /*model处理*/
             function initialModels(modelElement, resolved) {
                 var subModel = modelElement.attr('model').split('-')[0],
                         superModel = modelElement.attr('model').split('-').length > 1 ? modelElement.attr('model').split('-')[1] : undefined;
                 if (superModel) {
-                    if (resolved) return mz.models[subModel];
-                    var cst = mz.models[subModel].cst;
-                    mz.models[subModel].cst.prototype = mz.models[superModel];
-                    mz.models[subModel] = new mz.models[subModel].cst();
-                    mz.models[subModel].cst = cst;
-//                    console.log(mz.models[subModel]);
+                    if (resolved) return sparrow.models[subModel];
+                    var cst = sparrow.models[subModel].cst;
+                    sparrow.models[subModel].cst.prototype = sparrow.models[superModel];
+                    sparrow.models[subModel] = new sparrow.models[subModel].cst();
+                    sparrow.models[subModel].cst = cst;
+//                    console.log(sparrow.models[subModel]);
                 }
-                return mz.models[subModel]
+                return sparrow.models[subModel]
             }
 
             /*启动应用*/
-            _mz.prototype.bootstrap = function () {
+            _sparrow.prototype.bootstrap = function () {
                 $(function () {
-                    mz.modelCheck();
-                    mz.initialMZWatchers();
-//                    var dirtyCheckInterval=setInterval(mz.dirtyCheck,500);
+                    sparrow.modelCheck();
+                    sparrow.initialSparrowWatchers();
+//                    var dirtyCheckInterval=setInterval(sparrow.dirtyCheck,500);
                     /**/
 
                 })
             };
             /*数据初始化绑定*/
-            _mz.prototype.modelCheck = function (resolved) {
+            _sparrow.prototype.modelCheck = function (resolved) {
                 $('[model]').each(function () {
                     var model = initialModels($(this), resolved);
-                    $(this).find('[data-mz]').each(function () {
-                        var dataName = $(this).data('mz');
+                    $(this).find('[data-sparrow]').each(function () {
+                        var dataName = $(this).data('sparrow');
                         if (model[dataName]) {
                             $(this).prop('nodeName') == 'INPUT' || $(this).prop('nodeName') == 'TEXTAREA' ? $(this).val(model[dataName]) : $(this).html(model[dataName]);
-                            $(this).data('mzWatched', {
+                            $(this).data('sparrowWatched', {
                                 model: model, watchName: dataName, watchElem: $(this), oldValue: model[dataName]
                             });
                         }
@@ -62,77 +62,77 @@
                 });
             };
             /*绑定队列*/
-            _mz.prototype.initialMZWatchers = function () {
-                mz.mzWatchers = [];
-                $('[data-mz]').each(function () {
-                    mz.mzWatchers.push($(this).data('mzWatched'))
+            _sparrow.prototype.initialSparrowWatchers = function () {
+                sparrow.sparrowWatchers = [];
+                $('[data-sparrow]').each(function () {
+                    sparrow.sparrowWatchers.push($(this).data('sparrowWatched'))
                 });
-//                console.log(mz)
+//                console.log(sparrow)
             };
 
             /*脏值检查*/
-            _mz.prototype.dirtyCheck = function () {
+            _sparrow.prototype.dirtyCheck = function () {
                 var existDirtyData = false;
-                for (var i = 0; i < mz.mzWatchers.length; i++) {
-                    var mzWatcher = mz.mzWatchers[i];
-                    if (mzWatcher.watchElem.prop('nodeName') == 'INPUT' ||
-                            mzWatcher.watchElem.prop('nodeName') == 'TEXTAREA') {
-                        if (mzWatcher.model[mzWatcher.watchName] != mzWatcher.watchElem.val()) {
+                for (var i = 0; i < sparrow.sparrowWatchers.length; i++) {
+                    var sparrowWatcher = sparrow.sparrowWatchers[i];
+                    if (sparrowWatcher.watchElem.prop('nodeName') == 'INPUT' ||
+                            sparrowWatcher.watchElem.prop('nodeName') == 'TEXTAREA') {
+                        if (sparrowWatcher.model[sparrowWatcher.watchName] != sparrowWatcher.watchElem.val()) {
                             existDirtyData = true;
-                            if (mzWatcher.model[mzWatcher.watchName] == mzWatcher.oldValue) {
-                                mzWatcher.model[mzWatcher.watchName] = mzWatcher.watchElem.val();
-                                mzWatcher.oldValue = mzWatcher.watchElem.val();
+                            if (sparrowWatcher.model[sparrowWatcher.watchName] == sparrowWatcher.oldValue) {
+                                sparrowWatcher.model[sparrowWatcher.watchName] = sparrowWatcher.watchElem.val();
+                                sparrowWatcher.oldValue = sparrowWatcher.watchElem.val();
                             } else {
-                                mzWatcher.watchElem.val(mzWatcher.model[mzWatcher.watchName]);
-                                mzWatcher.oldValue = mzWatcher.model[mzWatcher.watchName]
+                                sparrowWatcher.watchElem.val(sparrowWatcher.model[sparrowWatcher.watchName]);
+                                sparrowWatcher.oldValue = sparrowWatcher.model[sparrowWatcher.watchName]
                             }
                         }
                     }
-                    else if (mzWatcher.model[mzWatcher.watchName] != mzWatcher.watchElem.html()) {
+                    else if (sparrowWatcher.model[sparrowWatcher.watchName] != sparrowWatcher.watchElem.html()) {
                         existDirtyData = true;
-                        if (mzWatcher.model[mzWatcher.watchName] == mzWatcher.oldValue) {
-                            mzWatcher.model[mzWatcher.watchName] = mzWatcher.watchElem.html();
-                            mzWatcher.oldValue = mzWatcher.watchElem.html()
+                        if (sparrowWatcher.model[sparrowWatcher.watchName] == sparrowWatcher.oldValue) {
+                            sparrowWatcher.model[sparrowWatcher.watchName] = sparrowWatcher.watchElem.html();
+                            sparrowWatcher.oldValue = sparrowWatcher.watchElem.html()
                         } else {
-                            mzWatcher.watchElem.html(mzWatcher.model[mzWatcher.watchName]);
-                            mzWatcher.oldValue = mzWatcher.model[mzWatcher.watchName]
+                            sparrowWatcher.watchElem.html(sparrowWatcher.model[sparrowWatcher.watchName]);
+                            sparrowWatcher.oldValue = sparrowWatcher.model[sparrowWatcher.watchName]
                         }
                     }
                 }
                 existDirtyData && arguments.callee();
             };
-            _mz.prototype.safeChage = function (func) {
+            _sparrow.prototype.safeChange = function (func) {
 
             };
             /*前端路由的实现*/
 
-            window.mz = mz;
+            window.sparrow = sparrow;
         })()
     </script>
     <script>
         (function () {
-            mz.registerView = function (name, path, parentView) {
-                mz.views = mz.views == undefined ? {} : mz.views
-                mz.views[name] = {};
-                mz.views[name].path = path;
-                parentView && (mz.views[name].parentView = parentView)
+            sparrow.registerView = function (name, path, parentView) {
+                sparrow.views = sparrow.views == undefined ? {} : sparrow.views
+                sparrow.views[name] = {};
+                sparrow.views[name].path = path;
+                parentView && (sparrow.views[name].parentView = parentView)
                 return this;
             }
             /*视图的跳转，支持二级视图，但是有异步操作也许有bug*/
-            mz.go = function (viewName, parentBeResolved) {
-                var parentView = mz.views[viewName].parentView;
+            sparrow.go = function (viewName, parentBeResolved) {
+                var parentView = sparrow.views[viewName].parentView;
                 if (parentView) {
-                    $.get(mz.views[parentView].path).success(function (data) {
-                        $('[mz-view]').empty().append(data);
-                        $.get(mz.views[viewName].path, function (data) {
-                            $('[mz-view]').find('[mz-view]').empty().append(data);
-                            mz.bootstrap();
+                    $.get(sparrow.views[parentView].path).success(function (data) {
+                        $('[sparrow-view]').empty().append(data);
+                        $.get(sparrow.views[viewName].path, function (data) {
+                            $('[sparrow-view]').find('[sparrow-view]').empty().append(data);
+                            sparrow.bootstrap();
                         })
                     })
                 } else {
-                    $.get(mz.views[viewName].path, function (data) {
-                        $('[mz-view]').empty().append(data);
-                        mz.bootstrap();
+                    $.get(sparrow.views[viewName].path, function (data) {
+                        $('[sparrow-view]').empty().append(data);
+                        sparrow.bootstrap();
                     })
                 }
             }
@@ -140,7 +140,7 @@
     </script>
     <script>
         /*demo*/
-        mz.registerModel('A', function () {
+        sparrow.registerModel('A', function () {
             this.name = 'A';
             this.age = 24;
             this.input = 'lll'
@@ -152,47 +152,47 @@
             this.name = 'aa';
             this.addr = 'nantong'
         }).registerView('home', '/makeEZ/test.html').registerView('inner', '/makeEZ/inner.html', 'home')
-        console.log(mz);
-        mz.bootstrap();
-        //        mz.go('home');
+        console.log(sparrow);
+        sparrow.bootstrap();
+        //        sparrow.go('home');
     </script>
 </head>
 <body>
 <div model="A">
-    <span data-mz="name"></span>
+    <span data-sparrow="name"></span>
 
     <div model="a-A">
         <div model="aa-a">
-            <span data-mz="age"></span>
+            <span data-sparrow="age"></span>
         </div>
-        <span data-mz="addr"></span><br/>
+        <span data-sparrow="addr"></span><br/>
     </div>
 
-    <span data-mz="age"></span>
-    <span data-mz="input"></span>
-    <input data-mz="input" type="text"/>
+    <span data-sparrow="age"></span>
+    <span data-sparrow="input"></span>
+    <input data-sparrow="input" type="text"/>
     <br/>
-    <textarea data-mz="input" name="" id="" cols="30" rows="10">
+    <textarea data-sparrow="input" name="" id="" cols="30" rows="10">
     </textarea>
 
-    <div mz-view="main">
-        <div mz-view="inner"></div>
+    <div sparrow-view="main">
+        <div sparrow-view="inner"></div>
     </div>
 </div>
 <button>dirtyCheck</button>
 <button id="test">go to test.html</button>
 <script>
     $('button').click(function () {
-        mz.dirtyCheck();
+        sparrow.dirtyCheck();
     });
     $('input').change(function () {
-        mz.dirtyCheck();
+        sparrow.dirtyCheck();
     });
     $('textarea').change(function () {
-        mz.dirtyCheck();
+        sparrow.dirtyCheck();
     })
     $('#test').click(function () {
-        mz.go('inner')
+        sparrow.go('inner')
     });
 </script>
 </body>
