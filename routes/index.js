@@ -128,7 +128,7 @@ module.exports = function (app, db, mongoose) {
     });
 
     /*makeEZ.js*/
-    app.get('/makeEZ',function(req,res){
-        res.render('makeEZ/makeEZ')
+    app.get('/sparrow',function(req,res){
+        res.render('sparrow/sparrow')
     })
 };

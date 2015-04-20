@@ -3,9 +3,26 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/bower_components/font-awesome-4.3.0/css/font-awesome.css"/>
+    <link href="/stylesheets/sparrow/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <!--fonts-->
+    <link href='http://fonts.useso.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic'
+          rel='stylesheet' type='text/css'>
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <!--<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>-->
+    <script type="text/javascript" src="/js/sparrow/move-top.js"></script>
+    <script type="text/javascript" src="/js/sparrow//easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({scrollTop: $(this.hash).offset().top}, 1000);
+            });
+        });
+    </script>
+
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/bower_components/less/dist/less.min.js"></script>
     <script>
@@ -54,10 +71,13 @@
                         var dataName = $(this).data('sparrow');
                         if (model[dataName]) {
                             $(this).prop('nodeName') == 'INPUT' || $(this).prop('nodeName') == 'TEXTAREA' ? $(this).val(model[dataName]) : $(this).html(model[dataName]);
-                            $(this).data('sparrowWatched', {
-                                model: model, watchName: dataName, watchElem: $(this), oldValue: model[dataName]
-                            });
                         }
+                        else{
+                            model[dataName]='';
+                        }
+                        $(this).data('sparrowWatched', {
+                            model: model, watchName: dataName, watchElem: $(this), oldValue: model[dataName]
+                        });
                     })
                 });
             };
@@ -142,15 +162,10 @@
         /*demo*/
         sparrow.registerModel('A', function () {
             this.name = 'A';
-            this.age = 24;
-            this.input = 'lll'
+            this.input = '';
+            this.character='parent'
         }).registerModel('a', function () {
             this.name = 'a';
-            this.addr = 'suzhou';
-            this.age = 12;
-        }).registerModel('aa', function () {
-            this.name = 'aa';
-            this.addr = 'nantong'
         }).registerView('home', '/makeEZ/test.html').registerView('inner', '/makeEZ/inner.html', 'home')
         console.log(sparrow);
         sparrow.bootstrap();
@@ -158,7 +173,101 @@
     </script>
 </head>
 <body>
-<div model="A">
+<div id="home" class="banner">
+    <div class="container">
+        <div class="banner-info text-center">
+            <img src="/pic/sparrow/sparrow.png" alt=""/>
+
+            <h2>WELCOME TO SPARROW.JS</h2>
+
+            <h1 style="font-style: italic">Though small perfectly formed</h1>
+            <!--<h4>麻雀虽小，五脏俱全</h4>-->
+            <div class="learnmore"><a href="#" class="hvr-sweep-to-right button">LEARN MORE</a></div>
+            <div class="arrow-icon"><a class="scroll" href="#about"><img src="/pic/sparrow/3.png" alt=" "/></a></div>
+        </div>
+    </div>
+</div>
+<div id="about" class="about">
+    <div class="container">
+        <div class="col-md-12 about-left">
+            <h3>I am sparrow!</h3>
+
+            <div class="strip"></div>
+            <h2>麻雀虽小，五脏俱全，一个小巧，简单的前端mvc框架</h2>
+
+            <p>实现了数据绑定，前端路由等功能，使用我很简单，只需要导入sparrow.js就可以了。依赖于jQuery，所以别忘了jQuery哦！</p>
+<pre>
+&lt;script src="xx/jQuery.js"&gt;&lt;/script&gt;
+&lt;script src="xx/sparrow.js"&gt;&lt;/script&gt;
+</pre>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<!-- //about-us -->
+<!-- what-we-do -->
+<div id="what-we-do" class="what-we-do">
+    <div class="container">
+        <div class="col-md-12 what-info">
+            <h3>Start to use it</h3>
+            <div class="strip"></div>
+            <h2>注册一个数据模型</h2>
+<pre>
+sparrow.registerModel('A', function () {this.name = 'A';this.character='parent'})
+    .registerModel('a', function () {this.name = 'a';})
+</pre>
+            <h2>HTML中使用这个数据模型</h2>
+<pre>
+&lt;div model="A"&gt;
+    &lt;span&gt;the name of model "A"&lt;/span&gt;&lt;span data-sparrow="name"&gt;&lt;/span&gt;
+    &lt;div model="a-A"&gt;
+        &lt;span&gt;the name of model "a"&lt;span data-sparrow="name"&gt;&lt;/span&gt;&lt;br/&gt;
+        &lt;span&gt;the character of model "a"&lt;span data-sparrow="character"&gt;&lt;/span&gt;&lt;br/&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+            <p>效果如下：</p>
+            <div model="A" class="code-show">
+                <span>the name of model "A"：</span><span data-sparrow="name"></span>
+                <div model="a-A">
+                    <span>the name of model "a"：</span><span data-sparrow="name"></span><br/>
+                    <span>the character of model "a"：</span><span data-sparrow="character"></span><br/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="about" class="about">
+    <div class="container">
+        <div class="col-md-12 about-left">
+            <h3>Data Bind</h3>
+            <div class="strip"></div>
+            <h2>双向数据绑定</h2>
+            <p>Sparrow.js同时提供了双向数据绑定的功能，类似于Angular中的双向数据绑定。</p>
+<pre>
+&lt;div model="A"&gt;
+    &lt;span&gt;your input：&lt;/span&gt;&lt;span data-sparrow="input"&gt;&lt;/span&gt;
+    &lt;span&gt;input anything&lt;/input&gt;&lt;span data-sparrow="input"&gt;
+&lt;/div&gt;
+</pre>
+            <p>效果如下：</p>
+            <div model="A" class="code-show">
+                <span>your input：</span><span data-sparrow="input"></span><br/>
+                <span>input anything：</span><input data-sparrow="input" type="text"/>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<!-- here stars scrolling icon -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $().UItoTop({easingType: 'easeOutQuart'});
+    });
+</script>
+
+<!--<div model="A">
     <span data-sparrow="name"></span>
 
     <div model="a-A">
@@ -178,14 +287,14 @@
     <div sparrow-view="main">
         <div sparrow-view="inner"></div>
     </div>
-</div>
-<button>dirtyCheck</button>
-<button id="test">go to test.html</button>
+</div>-->
+<!--<button>dirtyCheck</button>
+<button id="test">go to test.html</button>-->
 <script>
     $('button').click(function () {
         sparrow.dirtyCheck();
     });
-    $('input').change(function () {
+    $('input').keyup(function () {
         sparrow.dirtyCheck();
     });
     $('textarea').change(function () {
