@@ -69,15 +69,12 @@
                     var model = initialModels($(this), resolved);
                     $(this).find('[data-sparrow]').each(function () {
                         var dataName = $(this).data('sparrow');
-                        if (model[dataName]) {
+                        if (model[dataName]!=undefined) {
                             $(this).prop('nodeName') == 'INPUT' || $(this).prop('nodeName') == 'TEXTAREA' ? $(this).val(model[dataName]) : $(this).html(model[dataName]);
+                            $(this).data('sparrowWatched', {
+                                model: model, watchName: dataName, watchElem: $(this), oldValue: model[dataName]
+                            });
                         }
-                        else{
-                            model[dataName]='';
-                        }
-                        $(this).data('sparrowWatched', {
-                            model: model, watchName: dataName, watchElem: $(this), oldValue: model[dataName]
-                        });
                     })
                 });
             };
@@ -97,12 +94,15 @@
                     var sparrowWatcher = sparrow.sparrowWatchers[i];
                     if (sparrowWatcher.watchElem.prop('nodeName') == 'INPUT' ||
                             sparrowWatcher.watchElem.prop('nodeName') == 'TEXTAREA') {
+
                         if (sparrowWatcher.model[sparrowWatcher.watchName] != sparrowWatcher.watchElem.val()) {
-                            existDirtyData = true;
+                            existDirtyData = true;//存在脏值
                             if (sparrowWatcher.model[sparrowWatcher.watchName] == sparrowWatcher.oldValue) {
+                                //如果模型值与旧值相等，则修改模型值
                                 sparrowWatcher.model[sparrowWatcher.watchName] = sparrowWatcher.watchElem.val();
                                 sparrowWatcher.oldValue = sparrowWatcher.watchElem.val();
                             } else {
+                                //修改view值
                                 sparrowWatcher.watchElem.val(sparrowWatcher.model[sparrowWatcher.watchName]);
                                 sparrowWatcher.oldValue = sparrowWatcher.model[sparrowWatcher.watchName]
                             }
@@ -177,9 +177,7 @@
     <div class="container">
         <div class="banner-info text-center">
             <img src="/pic/sparrow/sparrow.png" alt=""/>
-
             <h2>WELCOME TO SPARROW.JS</h2>
-
             <h1 style="font-style: italic">Though small perfectly formed</h1>
             <!--<h4>麻雀虽小，五脏俱全</h4>-->
             <div class="learnmore"><a href="#" class="hvr-sweep-to-right button">LEARN MORE</a></div>
@@ -193,9 +191,9 @@
             <h3>I am sparrow!</h3>
 
             <div class="strip"></div>
-            <h2>麻雀虽小，五脏俱全，一个小巧，简单的前端mvc框架</h2>
+            <h2>一个小巧，简单的前端mvvm框架</h2>
 
-            <p>实现了数据绑定，前端路由等功能，使用我很简单，只需要导入sparrow.js就可以了。依赖于jQuery，所以别忘了jQuery哦！</p>
+            <p>实现了数据绑定，前端路由等功能，使用很简单，只需要导入sparrow.js就可以了。依赖于jQuery，所以别忘了jQuery哦！</p>
 <pre>
 &lt;script src="xx/jQuery.js"&gt;&lt;/script&gt;
 &lt;script src="xx/sparrow.js"&gt;&lt;/script&gt;
@@ -227,13 +225,13 @@ sparrow.registerModel('A', function () {this.name = 'A';this.character='parent'}
 &lt;/div&gt;
 </pre>
             <p>效果如下：</p>
-            <div model="A" class="code-show">
+            <!--<div model="A" class="code-show">
                 <span>the name of model "A"：</span><span data-sparrow="name"></span>
                 <div model="a-A">
                     <span>the name of model "a"：</span><span data-sparrow="name"></span><br/>
                     <span>the character of model "a"：</span><span data-sparrow="character"></span><br/>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
 </div>

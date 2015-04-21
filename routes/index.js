@@ -115,6 +115,10 @@ module.exports = function (app, db, mongoose) {
     app.get('/blog/prototype', function (req, res) {
         res.render('blog/js/Proto')
     });
+    /*js设计模式*/
+    app.get('/blog/singleton',function(req,res){
+        res.render('blog/js/singleton')
+    });
     /*blog/html*/
     app.get('/blog/position', function (req, res) {
         res.render('blog/html/position')
