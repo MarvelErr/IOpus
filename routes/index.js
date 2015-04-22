@@ -8,12 +8,10 @@ module.exports = function (app, db, mongoose) {
     var onlineUsers = [];
     var catalogueModel = models.getCatalogueModel(mongoose), userModel = models.getUserModel(mongoose);
     var count = 1;
-    app.put('/homepageCount', function (req, res) {
-        console.log(count++);
-        res.send('get')
-    });
     app.get('/', function (req, res) {
-        res.render('index')
+        res.render('index');
+        console.log(new Date());
+        console.log(count++);
     });
     /*chatRoom*/
     app.get('/chatRoom', function (req, res) {
