@@ -25,75 +25,47 @@
         <div class="row">
             <div class="col-xs-12">
                 <section>
-                    <h4><span class="fa fa-bookmark"></span>定义</h4>
-                    <p>作用域链大多数与内部函数相关</p>
+                    <h4><span class="fa fa-bookmark"></span>综合的单例模式</h4>
+
+                    <p>代码如下：</p>
 <pre>
-var x = 10;
-function foo() {
-    var y = 20;
-    function bar() {
-        alert(x + y);
-  }
-    return bar;
-}
-foo()(); // 30
+var Singleton = (function () {
+    var instantiated;
+    function init() {
+        /*这里定义单例代码*/
+        return {
+            publicMethod: function () {
+                console.log('hello world');
+            },
+            publicProperty: 'test'
+        };
+    }
+
+    return {
+        getInstance: function () {
+            if (!instantiated) {
+                instantiated = init();
+            }
+            return instantiated;
+        }
+    };
+})();
+/*调用公有的方法来获取实例:*/
+Singleton.getInstance().publicMethod();
 </pre>
-                    <p>作用域链正是内部上下文所有变量对象（包括父变量对象）的列表。此链用来变量查询。即在上面的例子中，“bar”上下文的作用域链包括AO(bar)、AO(foo)和VO(global)。</p>
-                    <p><strong>函数上下文的作用域链在函数调用时创建的</strong>，包含活动对象和这个函数内部的[[scope]]属性。下面详细的讨论一个函数的[[scope]]属性。</p>
-                    <p>在上下文中作如下表示</p>
-<pre>
-activeExecutionContext = {
-    VO: {...}, // or AO
-    this: thisValue,
-    ScopeChain: [ // Scope chain
-      // 所有变量对象的列表
-      // for identifiers lookup
-    ]
-};
-</pre>
-                    <p>这些与函数的生命周期有关，下面详解一个函数的生命周期</p>
                 </section>
                 <section>
-                    <h4><span class="fa fa-bookmark"></span>函数生命周期</h4>
-                    <h5>函数创建</h5>
+                    <h4><span class="fa fa-bookmark"></span>其他的实现方式</h4>
+                    <h5>方式一</h5>
 <pre>
-var x = 10;
-function foo() {
-    var y = 20;
-    alert(x + y);
+function Universe() {
+    if (typeof Universe.instance === 'object') {
+        return Universe.instance;
+    }
+    this.start_time = 0;
+    this.bang = "Big";
+    Universe.instance = this;
 }
-foo();
-</pre>
-                    <p>如上所示，foo函数在激活时，其AO中并不包含x的值，他之所以能够访问x，是通过函数内部的[[scope]]属性来实现的。</p>
-                    <p>[[scope]]是所有父变量对象的层级链，处于当前函数上下文之上，在函数创建时存于其中。</p>
-                    <p class="warning"><span class="fa fa-tag"></span>[[scope]]在函数创建时被存储－－静态（不变的），永远永远，直至函数销毁。
-                        即：函数可以永不调用，但[[scope]]属性已经写入，并存储在函数对象中。</p>
-                    <h5>函数激活</h5>
-                    <p>用通常的ECMAScript 数组表现作用域和[[scope]]，则函数在激活时（[[scope]]已经存在），AO被压入函数当前作用域链的最前端！这一点对于标识符的解析很重要
-                        因为这样可以保证最内部（前）作用域的变量被优先解析。</p>
-                </section>
-                <section>
-                    <h4><span class="fa fa-bookmark"></span>作用域特征</h4>
-                    <h5>闭包</h5>
-                    <p>详情参见<a href="">闭包</a></p>
-                    <h5>通过构造函数创建的函数中的[[scope]]</h5>
-                    <p class="warning"><span class="fa fa-tag"></span>通过函构造函数创建的函数的[[scope]]属性总是唯一的全局对象,因此通过这种函数创建除全局之外的最上层的上下文闭包是不可能的。</p>
-                    <h5>代码执行时对作用域链的影响</h5>
-                    <p>在代码执行阶段有两个声明能修改作用域链，这就是<strong>with</strong>声明和<strong>catch</strong>语句。
-                        它们添加到作用域链的最前端，对象须在这些声明中出现的标识符中查找。如果发生其中的一个，作用域链简要的作如下修改：</p>
-<pre>
-ScopeChain = withObject|catchObject + AO|VO + [[Scope]]
-</pre>
-                    <p>如下是一个综合示例</p>
-<pre>
-var x = 10, y = 10;
-with ({x: 20}) {
-    var x = 30, y = 30;
-    alert(x); // 30
-    alert(y); // 30
-}
-alert(x); // 10
-alert(y); // 30
 </pre>
                 </section>
             </div>
