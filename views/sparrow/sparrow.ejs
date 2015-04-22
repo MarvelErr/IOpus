@@ -203,8 +203,8 @@
             <div class="strip"></div>
             <h2>注册一个数据模型</h2>
 <pre>
-sparrow.registerModel('A', function () {this.name = 'A';this.character='parent'})
-    .registerModel('a', function () {this.name = 'a';})
+sparrow.registerModel('A',{name:'AVM',character:'parentDOMNode',input:''}).
+    registerModel('a',{name:'aaVM'})
 </pre>
             <h2>HTML中使用这个数据模型</h2>
 <pre>
@@ -224,6 +224,7 @@ sparrow.registerModel('A', function () {this.name = 'A';this.character='parent'}
                     <span>the character of model "a"：</span><span data-sparrow="character"></span><br/>
                 </div>
             </div>
+            <p class="small-p">基于DOM结构实现原型继承。</p>
         </div>
     </div>
 </div>

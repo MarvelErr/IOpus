@@ -11,6 +11,9 @@ pre{
 	background-color: #ADE870;
 	 border: 0px solid #ccc;
 }
+.small-p{
+	font-size: 17px !important;
+}
 /*-- banner --*/
 .banner{
 	background:url("../../pic/sparrow/t.jpg") no-repeat 0px 0px;
