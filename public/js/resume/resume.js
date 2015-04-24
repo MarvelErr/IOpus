@@ -1,6 +1,7 @@
 /**
  * Created by luwenxu on 2015/3/27.
- */
+ *//*
+
 $(function () {
     var containerHeight = $(window).height() > 650 ? $(window).height() : 650;
     $('.full').css('height', containerHeight);
@@ -19,7 +20,9 @@ $(function () {
             }
         })
     }
-    /*监听滚动事件*/
+    */
+/*监听滚动事件*//*
+
     ($(window).scrollTop()>$('.second-stage').offset().top)&&$('.skill-one').trigger('click');
     $(window).scroll(function(){
         if($(this).scrollTop()>$('.second-stage').offset().top){
@@ -53,4 +56,4 @@ $(function () {
         $('.skill-three').css('margin-left', '16.666%');
         $(this).css('margin-left', '24.999%');
     })
-});
+});*/
