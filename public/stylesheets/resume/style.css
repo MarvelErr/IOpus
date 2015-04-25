@@ -137,11 +137,12 @@ h4.subHeading{
 ------------------------------------------------------*/
 header{
 	position:relative;
+	background-image:url('../../pic/resume/rbgc.jpg');
+	background-size: 100% 100%;
 }
 .banner{
 	overflow:hidden;
 	margin:0 auto !important;
-	background:#CACACA;
 }
 
 .bannerText{
@@ -511,7 +512,7 @@ header{
 
 .technical .skills h4{
 	font-weight:700;
-	text-transform:uppercase;
+	/*text-transform:uppercase;*/
 }
 
 
@@ -1024,7 +1025,7 @@ ul.portfolioContainer li:hover span.hoverBox .linKed{
 	margin-bottom:40px;
 	outline:none;
 	height:100px;
-	font-style:italic;
+	/*font-style:italic;*/
 }
 
 

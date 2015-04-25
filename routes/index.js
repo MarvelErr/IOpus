@@ -66,6 +66,9 @@ module.exports = function (app, db, mongoose) {
     app.get('/myResume', function (req, res) {
         res.render('resume/resume')
     });
+    app.post('/leaveWords',function(req,res){
+        res.send({status:'success'})
+    });
     /*blog*/
     app.get('/blog', function (req, res) {
         res.render('blog/blog')
