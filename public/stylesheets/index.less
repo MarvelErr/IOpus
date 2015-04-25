@@ -1,6 +1,8 @@
 /*top-section*/
 .full{
 //  width: 1366px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 .my-nav{
   opacity: 0.8;
@@ -77,9 +79,13 @@
   font-family: 微软雅黑;
   color: #2CC3F8;
 }
+@media (min-width: 768px){
+  .goat{
+    top: -27px;
+  }
+}
 .goat{
   position: relative;
-  top: -27px;
 }
 /*third section*/
 .third-section{
@@ -131,6 +137,11 @@
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   display: inline-block;
   margin-left: 40px;
+}
+@media (max-width:400px ) {
+  .fit-mobile{
+    display: none;
+  }
 }
 .to-right{
   float: right;
