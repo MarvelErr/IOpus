@@ -10,14 +10,6 @@
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/bower_components/less/dist/less.min.js"></script>
-    <!--sweetalert-->
-    <script src="/plugins/sweetalert/js/sweet-alert.min.js"></script>
-    <link rel="stylesheet" href="/plugins/sweetalert/css/sweet-alert.css">
-    <script>
-      $(function(){
-//        $('.full').css('width',$(document).width())
-      })
-    </script>
     <script src="/js/index.js"></script>
   </head>
   <body>
@@ -78,13 +70,42 @@
       <div class="col-xs-12 text-center control-height">
         <h2 class="head-four">Your support is my passion</h2>
         <p class="subhead-four">dreams realized are just project finished</p>
-        <div class="btn my-btn-four" id="support" style="width: 68px" data-toggle="tooltip" data-placement="bottom" title="支持一下"><span class="fa fa-thumbs-o-up fa-3x"></span><span class="up">0</span></div>
-        <div class="btn my-btn-four" data-toggle="tooltip" data-placement="bottom" title="给我留言"><span class="fa fa-comment-o fa-3x"></span></div>
+        <div class="btn my-btn-four" id="support" style="" data-toggle="modal" data-target="#myModal">
+          <span class="fa fa-thumbs-o-up fa-3x"></span><span class="up">0</span>
+        </div>
+
+        <!--<div class="btn my-btn-four" data-toggle="tooltip" data-placement="bottom" title="给我留言"><span class="fa fa-comment-o fa-3x"></span></div>-->
       </div>
       <div class="col-xs-12 footer">
         <p class="footer-font"><span class="fa fa-copyright"></span><span>by 陆雯旭,2015</span></p>
         <!--<div class="btn my-btn-two to-right"><a href="http://weibo.com/myownswordsman"><span class="fa fa-weibo"></span><span class="fit-mobile">月朦之初</span></a></div>
         <div class="btn my-btn-two to-right"><a href="https://github.com/luwenxull"><span class="fa fa-github"></span><span class="fit-mobile">luwenxull</span></a></div>-->
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">谢谢支持~</h4>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label>告诉我你的名字</label>
+              <input type="text" class="form-control" id="supName" placeholder="your name">
+            </div>
+            <div class="form-group">
+              <label>顺便留下几句？</label>
+              <!--<input type="password" class="form-control" id="exampleInputPassword1" placeholder="comment">-->
+              <textarea class="form-control" rows="3"  id="supComments"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default">OK !</button>
+        </div>
       </div>
     </div>
   </div>

@@ -32,3 +32,25 @@ exports.getUserModel=function(mongoose){
     var userModel=mongoose.model('user',userSchema);
     return userModel;
 };
+/*supporter*/
+exports.getSupporterModel=function(mongoose){
+    var Schema=mongoose.Schema;
+    var supporterSchema=new Schema({
+        name:String,
+        comments:Array
+    });
+    supporterSchema.methods.fbn=function(name,callback){
+        return this.model('supporter').find({name:name},callback)
+    };
+    var supporterModel=mongoose.model('supporter',supporterSchema);
+    return supporterModel;
+};
+exports.getSupCountModel=function(mongoose){
+    var Schema=mongoose.Schema;
+    var supCountSchema=new Schema({
+        name:String,
+        count:Number
+    });
+    var supCountModel=mongoose.model('supCount',supCountSchema);
+    return supCountModel;
+};

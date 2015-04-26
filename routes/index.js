@@ -3,10 +3,13 @@
  */
 
 module.exports = function (app, db, mongoose) {
+    /*状态*/
     var fs = require('fs');
     var models = require('./mongoModel');
+    var resState = require('./resState');
     var onlineUsers = [];
     var catalogueModel = models.getCatalogueModel(mongoose), userModel = models.getUserModel(mongoose);
+    var supporterModel = models.getSupporterModel(mongoose), supCountModel = models.getSupCountModel(mongoose);
     var count = 1;
     app.get('/', function (req, res) {
         res.render('index');
@@ -17,10 +20,10 @@ module.exports = function (app, db, mongoose) {
     app.get('/chatRoom', function (req, res) {
         res.render('chatRoom/chatRoom')
     });
-    app.get('/getUsername',function(req,res){
-        res.send({name:req.session})
+    app.get('/getUsername', function (req, res) {
+        res.send({name: req.session})
     });
-    app.delete('/userExit',function(req,res){
+    app.delete('/userExit', function (req, res) {
         res.send('ok')
     });
     app.post('/signUp', function (req, res) {
@@ -38,7 +41,6 @@ module.exports = function (app, db, mongoose) {
                 user.save(function (err) {
                     if (err) console.log(err);
                     else {
-                        //console.log('new user was saved');
                         res.send({status: 'success'});
                     }
                 });
@@ -51,23 +53,60 @@ module.exports = function (app, db, mongoose) {
             name: req.body.name,
             password: req.body.password
         });
-            user.findByName(req.body.name, function (err, results) {
-                if (err) {
-                    console.log(err)
-                } else if (results.length > 0&&results[0].password==req.body.password) {
-                    res.send({status: 'success'});
-                    req.session[req.body.name]=req.body.name;
-                    onlineUsers.push(req.body.name);
-                } else {
-                    res.send({status: 'failed'})
-                }
-            });
+        user.findByName(req.body.name, function (err, results) {
+            if (err) {
+                console.log(err)
+            } else if (results.length > 0 && results[0].password == req.body.password) {
+                res.send({status: 'success'});
+                req.session[req.body.name] = req.body.name;
+                onlineUsers.push(req.body.name);
+            } else {
+                res.send({status: 'failed'})
+            }
+        });
     });
     app.get('/myResume', function (req, res) {
         res.render('resume/resume')
     });
-    app.post('/leaveWords',function(req,res){
-        res.send({status:'success'})
+    /*留言*/
+    function updateSupCount(res) {
+        supCountModel.findOne({name: 'supCount'}, function (err, results) {
+            var count = results.count + 1;
+            supCountModel.update({name: 'supCount'}, {count: count}, function (err, raw) {
+                resState.changeState(err, res, {status: 'success', count: count});
+            });
+        });
+    }
+
+    app.get('/supCount', function (req, res) {
+        supCountModel.findOne({name: 'supCount'}, function (err, results) {
+            resState.changeState(err, res, {status: 'success', count: results.count});
+        });
+    });
+    app.post('/leaveWords', function (req, res) {
+        var supporter = new supporterModel({}), supCount = new supCountModel({});
+        supporter.fbn(req.body.name, function (err, results) {
+            if (err) {
+                console.log(err);
+                res.send({status: 'failed'});
+            } else {
+                if (results.length != 0) {
+                    var comments = results[0].comments, name = req.body.name;
+                    comments.push(req.body.comments);
+                    supporterModel.update({name: name}, {comments: comments}, function (err, raw) {
+                        updateSupCount(res)
+                    });
+                } else {
+                    supporter = new supporterModel({
+                        name: req.body.name,
+                        comments: [req.body.comments]
+                    });
+                    supporter.save(function (err) {
+                        updateSupCount(res);
+                    })
+                }
+            }
+        });
     });
     /*blog*/
     app.get('/blog', function (req, res) {
@@ -117,7 +156,7 @@ module.exports = function (app, db, mongoose) {
         res.render('blog/js/Proto')
     });
     /*js设计模式*/
-    app.get('/blog/singleton',function(req,res){
+    app.get('/blog/singleton', function (req, res) {
         res.render('blog/js/singleton')
     });
     /*blog/html*/
@@ -132,8 +171,8 @@ module.exports = function (app, db, mongoose) {
         res.status(200).send('success');
     });
 
-    /*makeEZ.js*/
-    app.get('/sparrow',function(req,res){
+    /*sparrow.js*/
+    app.get('/sparrow', function (req, res) {
         res.render('sparrow/sparrow')
     })
 };
