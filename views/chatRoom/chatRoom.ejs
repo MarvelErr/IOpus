@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/bower_components/font-awesome-4.3.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/plugins/sweetalert/css/sweet-alert.css"/>
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="http://fonts.useso.com/css?family=RobotoDraft:300,500">
+    <!--<link rel="stylesheet" type="text/css" href="http://fonts.useso.com/css?family=RobotoDraft:300,500">-->
     <link rel="stylesheet" type="text/css" href="/plugins/login/css/default.css">
     <link rel="stylesheet" type="text/css" href="/plugins/login/css/account.css"/>
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
@@ -26,7 +26,8 @@
     </script>
     <!--<script src="js/chatRoom/service.js"></script>-->
     <script src="/js/chatRoom/controller.js"></script>
-    <script src="js/chatRoom/chatRoutes.js"></script>
+    <script src="/js/chatRoom/chatRoutes.js"></script>
+    <script src="js/chatRoom/directive.js"></script>
     <!--Less-->
     <link rel="stylesheet/less" href="/stylesheets/login.less"/>
     <link rel="stylesheet/less" href="/stylesheets/chat.less"/>
@@ -34,6 +35,6 @@
     <script src="/js/chatRoom/signin.js"></script>
 </head>
 <body>
-<div class="main" ui-view></div>
+<div class="main" ui-view init-user></div>
 </body>
 </html>

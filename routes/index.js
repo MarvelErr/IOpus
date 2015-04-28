@@ -21,14 +21,14 @@ module.exports = function (app, db, mongoose) {
         res.render('chatRoom/chatRoom')
     });
     app.get('/getUsername', function (req, res) {
-        res.send({name: req.session})
+        res.send(req.session)
     });
     app.delete('/userExit', function (req, res) {
         var leftUsers=[];
         for(var i=0;i++;i<onlineUsers.length){
             onlineUsers[i]!=req.query.username&&leftUsers.push(onlineUsers[i])
         }
-        req.session[req.query.username]=null;
+        req.session.username=null;
         onlineUsers=leftUsers;
         res.send({status:'success'})
     });
@@ -64,7 +64,7 @@ module.exports = function (app, db, mongoose) {
                 console.log(err)
             } else if (results.length > 0 && results[0].password == req.body.password) {
                 res.send({status: 'success'});
-                req.session[req.body.name] = req.body.name;
+                req.session.username = req.body.name;
                 onlineUsers.push(req.body.name);
             } else {
                 res.send({status: 'failed'})

@@ -66,7 +66,7 @@ app.controller('signInController', function ($scope, $resource, $state) {
         }
     }
 }).controller('chatController',function ($scope, socket, $state,user,$resource) {
-    $scope.user = user.data.name[$state.params.name];
+    $scope.user = user.data.username
     if($scope.user){
     }else{
         alert('不要调皮');
