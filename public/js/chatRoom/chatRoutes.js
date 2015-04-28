@@ -11,7 +11,7 @@ app.config(function ($stateProvider) {
         url: '/chat/:name',
         resolve: {
             socket: function () {
-                var socket = io.connect('http://10.10.17.56:3000/default');
+                var socket = io.connect('http://luwenxull.vicp.cc:3000/default');
                 return socket;
             },
             user:function($http){

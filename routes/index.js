@@ -24,7 +24,13 @@ module.exports = function (app, db, mongoose) {
         res.send({name: req.session})
     });
     app.delete('/userExit', function (req, res) {
-        res.send('ok')
+        var leftUsers=[];
+        for(var i=0;i++;i<onlineUsers.length){
+            onlineUsers[i]!=req.query.username&&leftUsers.push(onlineUsers[i])
+        }
+        req.session[req.query.username]=null;
+        onlineUsers=leftUsers;
+        res.send({status:'success'})
     });
     app.post('/signUp', function (req, res) {
         //console.log(req);

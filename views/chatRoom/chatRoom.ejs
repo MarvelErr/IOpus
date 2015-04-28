@@ -17,7 +17,7 @@
     <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="/bower_components/angular-resource/angular-resource.min.js"></script>
     <script src="/bower_components/socket.io-client/socket.io.js"></script>
-    <script src="/plugins/sweetalert/js/sweet-alert.min.js"></script>
+    <script src="/plugins/sweetalert/js/sweet-alert.js"></script>
     <script>
         var app = angular.module('app', ['ui.router', 'ngResource']);
         app.run(function($state){
@@ -33,6 +33,7 @@
     <script src="/bower_components/less/dist/less.min.js"></script>
     <script src="/js/chatRoom/signin.js"></script>
 </head>
-<body ui-view>
+<body>
+<div class="main" ui-view></div>
 </body>
 </html>

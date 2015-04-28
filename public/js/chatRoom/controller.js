@@ -12,12 +12,12 @@ app.controller('signInController', function ($scope, $resource, $state) {
             if (results.status == 'success') {
                 $state.go('chat', {name: $scope.username});
             } else {
-                swal("Something Wrong!", "暂时还不晓得哦!", "error");
+                swal("Something Wrong!", "密码错误!", "error");
             }
         });
     };
     $scope.signIn = function ($event) {
-        var signIn = $resource('/signIn');
+        //var signIn = $resource('/signIn');
         var success = true;
         $event.preventDefault();
         if (!$scope.username) {
@@ -100,8 +100,11 @@ app.controller('signInController', function ($scope, $resource, $state) {
     };
     $scope.exit=function(){
         var userExit=$resource('/userExit');
-        var some=userExit.delete({username:$scope.user},function(){
-
+        var some=userExit.delete({username:$scope.user},function(data){
+            if(data.status=='success'){
+                $scope.user=null;
+                $state.go('signIn');
+            }
         })
     }
 });

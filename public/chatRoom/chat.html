@@ -14,7 +14,7 @@
                         <div ng-repeat="msg in messages track by $index" class="single">
                             <div class="speaker" ng-show="user!=msg.name"><span>{{msg.name}}</span></div>
                             <div class="words" ng-show="user!=msg.name"><span>{{msg.msg}}</span></div>
-                            <div class="own" ng-show="user==msg.name"><div class="words" ><span>{{msg.msg}}</span></div></div>
+                            <div class="own" ng-show="user==msg.name"><div class="words text-right" ><span>{{msg.msg}}</span></div></div>
                         </div>
                     </div>
                     <form class="message-creator">
