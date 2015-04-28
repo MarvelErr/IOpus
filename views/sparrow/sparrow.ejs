@@ -168,10 +168,9 @@
 <div id="home" class="banner">
     <div class="container">
         <div class="banner-info text-center">
-            <img src="/pic/sparrow/sparrow.png" alt=""/>
+            <img id='sparrow' src="/pic/sparrow/sparrow.png" alt=""/>
             <h2>WELCOME TO SPARROW.JS</h2>
             <h1 style="font-style: italic">Though small perfectly formed</h1>
-            <!--<h4>麻雀虽小，五脏俱全</h4>-->
             <div class="learnmore"><a href="#" class="hvr-sweep-to-right button">LEARN MORE</a></div>
             <div class="arrow-icon"><a class="scroll" href="#about"><img src="/pic/sparrow/3.png" alt=" "/></a></div>
         </div>
@@ -257,30 +256,6 @@ sparrow.registerModel('A',{name:'AVM',character:'parentDOMNode',input:''}).
         $().UItoTop({easingType: 'easeOutQuart'});
     });
 </script>
-
-<!--<div model="A">
-    <span data-sparrow="name"></span>
-
-    <div model="a-A">
-        <div model="aa-a">
-            <span data-sparrow="age"></span>
-        </div>
-        <span data-sparrow="addr"></span><br/>
-    </div>
-
-    <span data-sparrow="age"></span>
-    <span data-sparrow="input"></span>
-    <input data-sparrow="input" type="text"/>
-    <br/>
-    <textarea data-sparrow="input" name="" id="" cols="30" rows="10">
-    </textarea>
-
-    <div sparrow-view="main">
-        <div sparrow-view="inner"></div>
-    </div>
-</div>-->
-<!--<button>dirtyCheck</button>
-<button id="test">go to test.html</button>-->
 <script>
     $('button').click(function () {
         sparrow.dirtyCheck();
